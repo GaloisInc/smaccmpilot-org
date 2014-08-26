@@ -12,7 +12,6 @@ import           Sidebar
 sitemap :: PageTree
 sitemap = Tree "/" "Home"
   [ (Page "index.html" "Overview")
-  , (Tree "languages"  "Languages" langpages)
   , (Tree "software"   "Software"  softwarepages)
   , (Tree "hardware"   "Hardware"  hardwarepages)
   , (Page "about.html" "About")
@@ -61,20 +60,6 @@ sitemap = Tree "/" "Home"
       [ Page "commsec-overview.html" "Overview"
       , Page "commsec-encapsulation.html" "Encapsulation"
       , Page "commsec-keyexchange.html" "Key Exchange"
-      ]
-    ]
-  langpages =
-    [ Page "index.html"          "Overview"
-    , Group "Ivory Language"
-      [ Page "ivory-introduction.html" "Introduction"
-      , Page "ivory-concepts.html"     "Concepts"
-      , Page "ivory-cheatsheet.html"   "Cheatsheet"
-      , Page "ivory-tools.html"        "Toolchain"
-      , Page "ivory-libs.html"         "Libraries"
-      , Page "ivory-fib.html"          "Tutorial"
-      ]
-    , Group "Tower Language"
-      [ Page "tower-overview.html" "Introduction"
       ]
     ]
 
@@ -137,14 +122,13 @@ main = hakyllWith config $ do
     standardPandocPagesSubdir ""
     standardPandocPagesSubdir "hardware/"
     standardPandocPagesSubdir "software/"
-    standardPandocPagesSubdir "languages/"
 
 
 navbar :: FilePath -> String
 navbar currentpath = unlines $
   [ "<ul class=\"nav\"> "
   , entry "/index.html"           "Home"
-  , entry "/languages/index.html" "Languages"
+  , entry "http://ivorylang.org" "Languages"
   , entry "/software/index.html"  "Software"
   , entry "/hardware/index.html"  "Hardware"
   , entry "/about.html"           "About"
