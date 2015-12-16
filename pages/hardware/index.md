@@ -3,58 +3,26 @@
 This page will describe the basic components needed to build a hardware platform
 for SMACCMPilot.
 
-We have compiled a [shopping list][shoppinglist] of all of the parts you will
-need to get a basic system up and running.
-
-[shoppinglist]: shoppinglist.html
-
 ## Flight Controller
 
-![](/images/fmu-top.jpg)
+![](/images/pixhawk-logo-view.jpg)
 
-The SMACCMPilot project supports the [PX4FMU 1.7][px4fmu] autopilot hardware.
+The SMACCMPilot project uses the [Pixhawk][] autopilot hardware. The official
+Pixhawk project website has information on this hardware and where it may be
+purchased.
 
-[px4fmu]: http://pixhawk.ethz.ch/px4/modules/px4fmu
-[px4ioar]: http://pixhawk.ethz.ch/px4/modules/px4ioar
-[fc]: flightcontroller.html
+[Pixhawk]: http://pixhawk.org
 
-The SMACCMPilot project uses hardware from the [PX4 autopilot project][px4] as a
-platform. The PX4 Autopilot project provides a number hardware solutions for use
-by hobbyists, researchers, and developers.
+## Quadcopter Flight Platforms
 
-The PX4 Autopilot Project is an open-source, open-hardware project led by
-the [PIXHAWK group][pixhawk] at [ETH Zurich (Swiss Federal Institute
-of Technology)][ethz], and supported by [3D Robotics][3dr], a leading
-manufacturer of open-source unmanned aerial vehicle technology.
+The SMACCMPilot project supports quadcopter platforms built around the Pixhawk.
+Commercial models supported include the now-discontinued 3DR Iris. Please see
+the [Pixhawk project site][Pixhawk] for instructions on how to set up a
+quadcopter with a Pixhawk flight controller.
 
-PX4 project hardware is manufactured by [3D Robotics][3dr] and sold
-internationally through a [network of distributors][3drdisty].
-
-[px4]: http://pixhawk.ethz.ch/px4
-[pixhawk]: http://pixhawk.ethz.ch
-[ethz]: http://www.ethz.ch
-[3dr]: http://3drobotics.com
-[3drdisty]: http://diydrones.com/profiles/blogs/list-of-all-diy-drones
-
-## Flight Platforms
-
-### Quadcopter
-
-![3DR Quadcopter](/images/3drquad_400.jpg)
-
-SMACCMPilot supports a wide variety of quadcopters that use simple PWM motor
-controllers. See the [generic quadcopter air vehicle][q] page for more details.
-
-[q]: airvehicle-genericquad.html
-
-### AR Drone
-
-![PX4 Autopilot on AR Drone](/images/ardrone_px4_600.jpg)
-
-You can fly SMACCMPilot on a modified AR Drone. See the [AR Drone air
-vehicle][ar] page for more details.
-
-[ar]: airvehicle-ardrone.html
+At this time, platforms with more than 4 motors are not supported. All motors
+must be PWM based, and use the first 4 channels connected to the PX4IO
+coprocessor.
 
 ## Required Accessories
 
@@ -79,26 +47,19 @@ information on what kind of system you need, and how to set it up.
 
 [rc]: rc-controller.html
 
-### Batteries & Charger
-
-Each air vehicle will require appropriate batteries, and a battery charger.
-Recommendations are made on the individual vehicle pages.
-
-## Optional Accessories
-
-### USB Gamepad
-
-You can fly SMACCMPilot from the GCS using a USB gamepad. See the [GCS Software
-page][gcs-sw] for more information.
-
-At this time, we support the Logitech F310 and F710 gamepads.
-
-[gcs-sw]: ../software/gcs.html
-
 ### JTAG/SWD Debugger
 
-Developers will want to use a JTAG/SWD debugger for inspecting programs as they
-run on the PX4FMU. We recommend the [Black Magic Probe](blackmagic.html), but
+Developers may want to use a JTAG/SWD debugger for inspecting programs as they
+run on the Pixhawk. We recommend the [Black Magic Probe](blackmagic.html), but
 various other products will work with the STM32F4 microcontroller as well.
+
+## Hardware Preparation
+
+We provide a set of steps to configure your hardware for the SMACCMPilot
+project in the [smaccmpilot-hardware-prep][] repository. Clone this repository
+and follow the steps in the `README` documents.
+
+[smaccmpilot-hardware-prep]: https://github.com/galoisinc/smaccmpilot-hardware-prep
+
 
 
