@@ -24,3 +24,11 @@ A guide to understanding the ground control software:
 
 * [Ground control software overview](gcs-overview.html)
 
+### Hardware preparation
+
+The `smaccmpilot-build/smaccmpilot-hardware-prep` repository contains
+instructions for preparing a Pixhawk based quadcopter to run the SMACCMPilot
+flight software.
+
+For more details, see the
+[readme](https://github.com/galoisinc/smaccmpilot-hardware-prep).
