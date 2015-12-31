@@ -13,13 +13,13 @@ The SMACCMPilot team is:
 - [James Bielman](http://corp.galois.com/james-bielman/)
 - [Thomas DuBuisson](http://corp.galois.com/tom-dubuisson/)
 - [Trevor Elliott](http://corp.galois.com/trevor-elliott/)
-- [Pat Hickey](http://corp.galois.com/pat-hickey/)
 - [John Launchbury](http://corp.galois.com/john-launchbury)
 - [Lee Pike](http://corp.galois.com/lee-pike/)
 
 Alumi are:
 
 - [Erlend Hamberg](http://hamberg.no/erlend/about.html)
+- [Pat Hickey](http://moreproductive.org)
 
 
 The SMACCMPilot project software is released under an open-source BSD License.
