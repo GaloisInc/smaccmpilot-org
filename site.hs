@@ -20,41 +20,21 @@ sitemap = Tree "/" "Home"
   where
   hardwarepages =
     [ Page "index.html"            "Overview"
-    , Group "Air Vehicles"
-      [ Page "airvehicle-overview.html" "Overview"
-      , Page "airvehicle-genericquad.html" "Generic Quadcopter"
-      , Page "airvehicle-ardrone.html" "AR Drone"
-      ]
-    , Group "Electronics"
-      [ Page "flightcontroller.html" "Flight Controller"
-      , Page "blackmagic.html"       "Debugger"
-      , Page "rc-controller.html"    "Radio Control"
-      ]
-    , Group "Guides"
-      [ Page "shoppinglist.html"     "Shopping List"
-      ]
+    , Page "blackmagic.html"       "Debugger"
+    , Page "rc-controller.html"    "Radio Control"
     ]
   softwarepages =
     [ Page "index.html"           "Introduction"
     , Page "properties.html"      "Properties and Evidence"
     , Group "Development"
-      [ Page "prerequisites.html"     "Prerequisites"
       , Page "build.html"             "Building"
       , Page "loading.html"           "Loading"
       ]
     , Group "Flight Software"
       [ Page "flight-overview.html"   "Overview"
-      , Page "flight-checklists.html" "Flight Checklists"
-      , Page "flight-platforms.html"  "Platform Support"
-      , Page "flight-components.html" "Software Components"
-      , Page "flight-future.html"     "Future Developments"
       ]
     , Group "Ground Control Software"
       [ Page "gcs-overview.html"      "Overview"
-      , Page "gcs-commsec.html"       "Communication Security"
-      , Page "gcs-smaccm-sik.html"    "SMACCM-SiK Radio"
-      , Page "gcs-mavproxy.html"      "MAVProxy"
-      , Page "gcs-gamepad.html"       "Gamepad Control"
       ]
     , Group "Communications Security"
       [ Page "commsec-overview.html" "Overview"
