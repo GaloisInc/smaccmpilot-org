@@ -9,7 +9,6 @@ domain specific languages](../languages/).
 A complete guide to building and loading the SMACCMPilot software on your
 machine:
 
-* [Installing Prerequisites](prerequisites.html)
 * [Building SMACCMPilot](build.html)
 * [Uploading SMACCMPilot to hardware](loading.html)
 
@@ -19,12 +18,9 @@ A guide to understanding the flight software:
 
 * [Flight software overview](flight-overview.html)
 
-### Umbrella Repository
+### Ground Control Software Guide
 
-For convenience, we have provided the [SMACCMPilot-Build][smaccmpilot-build]
-repository which includes all of the sources required to build SMACCMPilot as a
-collection of submodules. There are instructions for [building this
-repository](build.html).
+A guide to understanding the ground control software:
 
-[smaccmpilot-build]: http://github.com/galoisinc/smaccmpilot-build
+* [Ground control software overview](gcs-overview.html)
 
