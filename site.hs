@@ -27,7 +27,7 @@ sitemap = Tree "/" "Home"
     [ Page "index.html"           "Introduction"
     , Page "properties.html"      "Properties and Evidence"
     , Group "Development"
-      , Page "build.html"             "Building"
+      [ Page "build.html"             "Building"
       , Page "loading.html"           "Loading"
       ]
     , Group "Flight Software"
