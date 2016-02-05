@@ -4,7 +4,7 @@ We provide a ground control station
 
 ## Prerequisite
 
-Run `make create-sandbox` in the smaccm-comm-client directory.
+Run `make` in the smaccm-comm-client directory.
 
 ## Running
 

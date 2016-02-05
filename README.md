@@ -20,14 +20,14 @@ and the `/index.html` landing page is rendered from `/templates/frontpage.html`.
 
 ## Building
 
-smaccmpilot.org is a static web site generated using the excellent [`hakyll`][]
-package. The included `Makefile` will do a complete build of the site in a cabal
-sandbox. You will need ghc 7.4 or higher, and cabal 1.18 or higher.
+smaccmpilot.org is a static web site generated using the excellent
+[`hakyll`][] package. The included `Makefile` will do a complete build
+of the site using [Stack][stack].
 
-The `make` command will install the complete site generator executable in
-`/.cabal-sandbox` and then generate the static pages into `/_site/`. The
-`make preview` command will automatically rebuild pages each time a markdown
-source is edited, and run a web server for previewing the site on
+The `make` command will install the complete site generator executable
+and then generate the static pages into `/_site/`. The `make preview`
+command will automatically rebuild pages each time a markdown source
+is edited, and run a web server for previewing the site on
 `http://localhost:8000`.
 
 The site generator executable only needs to be rebuilt when editing the
@@ -44,4 +44,4 @@ repository, they retain their original copyright and license.
 
 [hakyll]: http://jaspervdj.be/hakyll/
 [Markdown]: http://daringfireball.net/projects/markdown/syntax
-
+[stack]: http://www.haskellstack.org/

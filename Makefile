@@ -1,26 +1,18 @@
-SMACCMPILOT_ORG_EXEC?=./.cabal-sandbox/bin/smaccmpilot-org
+STACK_FLAGS ?=
+
+SMACCMPILOT_ORG_EXEC = stack build $(STACK_FLAGS) --exec 'smaccmpilot-org $(1)'
 
 default: build
 
-.cabal-sandbox:
-	@cabal sandbox init
-
-.PHONY: smaccmpilot-org
-smaccmpilot-org: .cabal-sandbox site.hs Sidebar.hs
-	@cabal install
-	$(SMACCMPILOT_ORG_EXEC) clean
-
-build: smaccmpilot-org
-	$(SMACCMPILOT_ORG_EXEC) build
+.PHONY: build preview deploy clean
+build:
+	$(call SMACCMPILOT_ORG_EXEC,build)
 
 preview: build
-	$(SMACCMPILOT_ORG_EXEC) preview
+	$(call SMACCMPILOT_ORG_EXEC,preview)
 
 deploy:
-	$(SMACCMPILOT_ORG_EXEC) deploy
+	$(call SMACCMPILOT_ORG_EXEC,deploy)
 
 clean:
-	-$(SMACCMPILOT_ORG_EXEC) clean
-
-clean-sandbox: clean
-	-rm -rf cabal.sandbox.config .cabal-sandbox
+	$(call SMACCMPILOT_ORG_EXEC,clean)
