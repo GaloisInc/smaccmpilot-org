@@ -4,9 +4,12 @@
 [building SMACCMPilot][building], you have a complete [SMACCMPilot flight
 platform][hardware].
 
+There are two boards to flash: 
+
 Before you begin, determine whether you want to use the PX4 USB Bootloader, or
 whether you prefer to use a JTAG programmer such as the Black Magic Probe.
-Instructions for both cases are below.
+Instructions for both cases are below. Note that for the
+[hardware](../hardware/index.md) the casing has to be cut away to use the probe.
 
 [building]: build.html
 [hardware]: ../hardware/airvehicle-overview.html

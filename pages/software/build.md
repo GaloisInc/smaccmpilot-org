@@ -1,57 +1,37 @@
 # Building SMACCMPilot
 
-## Sources
-
 The source code for the SMACCMPilot project is available as open source on
 Github. You'll need the source to build and use SMACCMPilot: it is not
-distributed as a pre-built binary.
+distributed as a pre-built binary. Note that the current build requires some
+specialized hardware, but you should be able to build and analyze the binaries
+without it.
 
-<p><a class="btn btn-primary"
-      href="http://github.com/galoisinc/smaccmpilot-build">
-    SMACCMPilot-build repository &raquo;</a>
-</p>
+There are a number of repositories used in the build. You have some choices in
+how to acquire those sources. The easiest is the following:
 
-The [smaccmpilot-build][] repository contains a collection of submodules
-containing all of the project sources. You can fetch these submodules when you
-fetch smaccmpilot-build by performing
+```> git clone https://github.com/smaccm/phase2/```
 
-```sh
-git clone --recursive https://github.com/galoisinc/smaccmpilot-build
-```
+The `phase2` project contains scripts that downloads and builds the entire
+project, including dependencies, assuming a bare Ubuntu 12.04 amd64 machine with
+at least 50GB of memory. If you provision a similar (virtual) machine, these
+scripts should work for you. The scripts run are located in `scripts/` and the
+entry point is `main.sh`. The build is run on Travis-CI:
+<https://travis-ci.org/smaccm/phase2>, and you can see the output of a
+successful build there. . If you are building on a different system, use these
+scripts as a guide. The first time you run the scripts, run `bootstrap.sh`
+manually to install the prerequisites.
 
-or, if you already did a non-recursive clone, enter the `smaccmpilot-build`
-directory and perform
+There is an experimental Vagrant build that builds a portion of the system but
+not the seL4 components that could be extended (patches welcome!). See the
+[development environment readme](https://github.com/GaloisInc/smaccmpilot-build/tree/master/development-environment)
+for more information.
 
-```sh
-git submodule init
-git submodule update
-```
+We have successfully built the software on Ubuntu, Fedora, and OSX.
 
-[smaccmpilot-build]: http://github.com/galoisinc/smaccmpilot-build
+The build was successful if you generated the following two images:
 
-## Development Environment
-
-SMACCMPilot is a pretty big project with a lot of specific dependencies. To ease
-development environment setup, we provide a [Vagrant][] configuration
-that will automatically setup a VM, install all of the correct dependencies, and
-build the SMACCMPilot flight application and project documentation.
-
-See the [development environment
-readme](https://github.com/GaloisInc/smaccmpilot-build/tree/master/development-environment) for more information.
-
-## Flight Application
-
-The SMACCMPilot flight application is built from the directory
-`smaccmpilot-build/smaccmpilot-stm32/src/smaccm-flight` with the command `make
-flight`
-
-To upload the flight app to a Pixhawk, use the command `make upload-flight` from the
-same directory. Set the `UPLOAD_PORT` environment variable to the path you
-expect the Pixhawk bootloader to enumerate on, e.g.
-
-```sh
-UPLOAD_PORT=/dev/ttyACM0 make upload-flight
-```
+* `phase2\pixhawk-image`
+* `phase2\odroid-image`
 
 ## Test Apps
 
