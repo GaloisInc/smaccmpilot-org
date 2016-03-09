@@ -1,5 +1,5 @@
 
-# SMAVLink Commsec: Encapsulation of MAVLink Frames
+# Encapsulation of Frames
 
 In order to encrypt and authenticate (or decrypt and verify) messages, the
 commsec routines require a 128 bit key, 32 bit salt, counter values, and source
@@ -50,7 +50,7 @@ message counter, 16 bit epoch counter, and 16 bit source identity.  AES Galois
 Counter Mode (GCM) is used to encrypt and authenticate the frame.  The message
 counter is incremented and stored in RAM.
 
-After encryption, SMAVLink encapsulates the message with an initialization
+After encryption, we encapsulate the message with an initialization
 vector and authentication tag.  The initialization vector is composed of fields
 of source identifier, _epoch counter_, and counter.
 

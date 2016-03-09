@@ -26,7 +26,8 @@ not the seL4 components that could be extended (patches welcome!). See the
 [development environment readme](https://github.com/GaloisInc/smaccmpilot-build/tree/master/development-environment)
 for more information.
 
-We have successfully built the software on Ubuntu, Fedora, and OSX.
+We have successfully built the software on Ubuntu, Fedora, and OSX 64-bit
+machines.
 
 The build was successful if you generated the following two images:
 
@@ -41,7 +42,7 @@ functionality of the library code.
 For all test apps (including the flight app, whose only difference is that we
 defined some convenient shortcut make targets), the application will build in a
 directory path relative to the library root named `<platform>/<appname>/`. (The
-Pixhawk platform is refered to internally as `platform-fmu24`.)
+Pixhawk platform is refered to as `platform-fmu24`.)
 
 In the app build directory, we will build two distinct images:
 

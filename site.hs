@@ -30,9 +30,9 @@ sitemap = Tree "/" "Home"
       [ Page "build.html"             "Building"
       , Page "loading.html"           "Loading"
       ]
-    , Group "Flight Software"
-      [ Page "flight-overview.html"   "Overview"
-      ]
+    -- , Group "Flight Software"
+    --   [ Page "flight-overview.html"   "Overview"
+    --   ]
     , Group "Ground Control Software"
       [ Page "gcs-overview.html"      "Overview"
       ]
