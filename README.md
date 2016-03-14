@@ -42,6 +42,6 @@ repository, they retain their original copyright and license.
 [smaccmpilotorg]: http://github.com/GaloisInc/smaccmpilot-org
 [smaccmpilot.org]: http://smaccmpilot.org
 
-[hakyll]: http://jaspervdj.be/hakyll/
+[`hakyll`]: http://jaspervdj.be/hakyll/
 [Markdown]: http://daringfireball.net/projects/markdown/syntax
 [stack]: http://www.haskellstack.org/
