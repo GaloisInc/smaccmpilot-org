@@ -14,7 +14,7 @@ There are two boards to flash: the PX4 and the ODROID-XU. We describe each below
 Before you begin, determine whether you want to use the PX4 USB Bootloader, or
 whether you prefer to use a JTAG programmer such as the Black Magic Probe.
 Instructions for both cases are below. Note that for the
-[hardware](../hardware/index.md) the casing has to be cut away to use the probe.
+[hardware](../hardware/index) the casing has to be cut away to use the probe.
 
 ### PX4 USB Bootloader
 
