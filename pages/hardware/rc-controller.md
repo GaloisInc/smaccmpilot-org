@@ -30,11 +30,9 @@ SMACCMPilot users get comfortable flying the vehicle under stabilize mode, and
 always have a safety pilot holding the RC transmitter when flying in autonomous
 mode.
 
-*Real talk: quadcopters are dangerous, and proper use of the RC transmitter will
-keep you safe.* Improper operation of any quadcopter can cause injury, and many
-of the larger ones can send you to the hospital with cuts or worse. Please take
-safe operation seriously, only operate a safe distance away from people, and
-always an operator spotting the vehicle and ready to hit the kill switch.
+Improper operation of any quadcopter can cause injury. Only operate a safe
+distance away from people, and always have an operator spotting the vehicle and
+ready to hit the kill switch.
 
 ## Compatible RC Transmitter and Receivers
 

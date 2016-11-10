@@ -2,8 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 import           Control.Applicative ((<$>))
 import           Data.Monoid         (mappend, mconcat)
-import           System.FilePath     (dropFileName)
 import           Hakyll
+import           System.FilePath     (dropFileName)
 
 import           Sidebar
 --------------------------------------------------------------------------------
@@ -38,8 +38,8 @@ sitemap = Tree "/" "Home"
       ]
     , Group "Communications Security"
       [ Page "commsec-overview.html" "Overview"
-      , Page "commsec-encapsulation.html" "Encapsulation"
-      , Page "commsec-keyexchange.html" "Key Exchange"
+      -- , Page "commsec-encapsulation.html" "Encapsulation"
+      -- , Page "commsec-keyexchange.html" "Key Exchange"
       ]
     ]
 

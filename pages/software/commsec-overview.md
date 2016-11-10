@@ -25,8 +25,8 @@ The design constraints for the crypto is made with the following constraints in 
 * One-way links must remain useful, the protocol can not assume two-way communication.
 * Packet-loss can occur for extended periods of time (easily many minutes).
 
-There are two distinct phases: [key agreement](commsec-keyexchange.html) and
-[encapsulation](commsec-encapsulation.html). **While we have designed a key
-agreement protocol, we have not implemented it for SMACCMPilot.**
+There are two distinct phases: key agreement and encapsulation. **While we have
+designed a key agreement protocol, we have not implemented it for SMACCMPilot.**
+The design of both are described in the [Github README](https://github.com/GaloisInc/gec/blob/master/README.md).
 
 [mavlink]: http://qgroundcontrol.org/mavlink/start
