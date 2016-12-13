@@ -21,6 +21,7 @@ sitemap = Tree "/" "Home"
   hardwarepages =
     [ Page "index.html"            "Overview"
     , Page "blackmagic.html"       "Debugger"
+    , Page "iris.html"             "Iris"
     , Page "rc-controller.html"    "Radio Control"
     ]
   softwarepages =
