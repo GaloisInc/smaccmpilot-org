@@ -67,11 +67,11 @@ Lets start!
   - Lidar Green -> PX4 pin#2 next to the red (SCL)
   - Lidar Blue -> PX4 pin#3 (the last one free) (SDA)
 
-Third hand comes handy here. Use some shrinktube to protect the solder joints. Below are the pinouts:
+Third hand comes handy here. Use some shrinktube to protect the solder joints. Once you have the cable ready, connect it to the lidar on one side and to the i2c splitter on the oher. Below are the pinouts:
 
 ![Lidar lite wiring harness](../images/lidar-wire.png)
 
-![Pixhawk I2C connector](../images/i2c.png)
+![Pixhawk I2C connector (for reference only!)](../images/i2c.png)
 
 11. Finally, don't forget to twist all cables you have to get rid of unwanted noise. 
 
