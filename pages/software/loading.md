@@ -28,7 +28,7 @@ bootloader.
 These instructions may be augmented by the [PX4 Project wiki
 page][px4wiki-upload] on the same topic.
 
-[px4wiki-upload]: http://pixhawk.ethz.ch/px4/dev/nuttx/building_and_flashing
+[px4wiki-upload]: https://dev.px4.io/stm32_bootloader.html
 
 #### Flashing the Bootloader
 

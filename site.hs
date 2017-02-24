@@ -21,7 +21,7 @@ sitemap = Tree "/" "Home"
   hardwarepages =
     [ Page "index.html"            "Overview"
     , Page "blackmagic.html"       "Debugger"
-    , Page "iris.html"             "Iris"
+    , Page "iris.html"             "Iris modifications"
     , Page "rc-controller.html"    "Radio Control"
     ]
   softwarepages =
@@ -30,6 +30,7 @@ sitemap = Tree "/" "Home"
     , Group "Development"
       [ Page "build.html"             "Building"
       , Page "loading.html"           "Loading"
+      , Page "preflight.html"         "Flight preparation"
       ]
     -- , Group "Flight Software"
     --   [ Page "flight-overview.html"   "Overview"
