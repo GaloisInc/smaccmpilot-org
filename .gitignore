@@ -6,3 +6,4 @@ dist
 site
 .stack-work
 .DS_Store
+*.odp#

@@ -7,7 +7,7 @@ sample RC control systems which we've successfully used with SMACCMPilot.
 
 ## FrSky Taranis X9D
 
-![](/images/taranis.png)
+![](/images/FrSky-Taranis-X9D+.jpg)
 
 FrSky recently released the [Taranis][], a transmitter which is compatible with
 their range of recievers. It has a better build quality than the Turnigy 9XR,

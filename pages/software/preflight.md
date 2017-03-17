@@ -3,83 +3,113 @@
 
 ## Sensors calibration
 
-Before we can fly, we need to calibrate our sensors to get a reliable attitude estimation. In order to calibrate the sensors correctly, we need to get raw data out of then, save and parse them, and do a least squares estimation to find the bias of each axis. The simplest way to do so is to use [Paparazzi autopilot][pprz] firmware for PX4. Note that the acceleroneter calibration has to happen *before* you put the Pixhawk into Iris. Magnetometer calibration on the other hand has to happen *after* you install Pixhawk into the quadcopter. More theory and information about the calibration can be found at [Paparazzi wiki][pprz_wiki]
+TBD - no calibration is needed at the moment. It means use your default `calibration.conf` file and do not change it.
 
-[pprz]: https://wiki.paparazziuav.org/
-[pprz_wiki]: https://wiki.paparazziuav.org/wiki/ImuCalibration
+## Software
+If unsure whether you have the right setup, follow the instructions on [smaccmpilot-hardware-prep][]
 
-### Installing Paparazzi
-Although there is nice and detailed description on [Paparazzi wiki][pprz-install] we can just use this one liner to get us up to date (copy-paste to your shell):
+[smaccmpilot-hardware-prep]: https://github.com/GaloisInc/smaccmpilot-hardware-prep
+
+Once done with the hardware prep, load *smaccmpilot* autopilot. Temporarily (as of 3.17) use `new-attitude-estimator` branch from [Github][]. Don't forget to do:
 
 ```
-sudo add-apt-repository -y ppa:paparazzi-uav/ppa && sudo add-apt-repository -y ppa:team-gcc-arm-embedded/ppa && sudo apt-get update && \
-sudo apt-get -f -y install paparazzi-dev paparazzi-jsbsim gcc-arm-embedded && cd ~ && git clone --origin upstream https://github.com/paparazzi/paparazzi.git && \
-cd ~/paparazzi && git remote update -p && \
-git checkout -b v5.10 upstream/v5.10 && sudo cp conf/system/udev/rules/*.rules /etc/udev/rules.d/ && sudo udevadm control --reload-rules && \
-make && ./start.py
+stack clean
+make clean
+make flight_echronos
 ```
 
-#### Uploading Firmware
-A lancher will pop up:
-
-![](../images/pprz1.png)
-
-From the launcher configuration, choose `Conf = conf_tests.xml` and `Control panel = control_panel.xml`, then press *Launch Paparazzi with selected configuration* 
-
-Now you will see *Paparazzi center*. First choose your airframe (A/C) from the dropdown menu and set it to *Iris.* Then set your *Target* to *ap* (autopilot). Set the *Flash Mode* to *Default* and compare what you see with the picture below:
-
-![](../images/pprzcenter1.png)
-
-Click on *Clean* and then *Build*. As the build is progressing, get ready to plug in your usb cable into Pixhawk, but *don't plug it in yet*. Once the build process finishes, we need to *Upload* the new firmware. Unfortunately the way the upload is handled, you have to time your steps precisely in order to avoid timeouts (fortunately you have to do this only once). So get ready to plug in the USB cable into Pixhakw, press *Upload* and connect the USB cable to the Pixhawk USB port within 1-2 seconds after you pressed the *Upload* button. 
-
-![](../images/pprzcenter2.png)
-
-If you do it correct, you will see the familiar bootloader output:
-```
-Found board 9,0 bootloader rev 5 on /dev/serial/by-id/usb-3D_Robotics_PX4_BL_FMU_v2.x_0-if00
-50583400 00ac2600 00100000 00ffffff ffffffff ffffffff ffffffff ffffffff 6e369938 4b384b7e bd4a1f73 2ab539ed e63e39a0 b2a70f4e 773276b9 7fd0eae1 3e34cace 08201d59 ffa4f998 32542721 3121c8b1 74e24c40 8df8e18c e5135968 10a0cd5b 0f9851a3 7ed75a54 79b70e95 3b12idtype: =00
-vid: 000026ac
-pid: 00000010
-coa: bjaZOEs4S369Sh9zKrU57eY+OaCypw9OdzJ2uX/Q6uE+NMrOCCAdWf+k+ZgyVCchMSHIsXTiTECN+OGM5RNZaBCgzVsPmFGjftdaVHm3DpU7ElwrOAzech3BxeRQTxgAZJUqHIENDs9In0IqoATNgW1S06mGP0NFNXVzUg28THU=
-
-sn: 002300303532471836343032
-chip: 10036419
-family: STM32F42x
-revision: Y
-flash 1032192
+[Github]: https://github.com/GaloisInc/smaccmpilot-stm32f4/commits/new-attitude-estimator
 
 
-Erase  : [                    ] 0.0%
-Erase  : [=                   ] 5.6%
-Erase  : [==                  ] 11.1%
-Erase  : [===                 ] 16.7%
-Erase  : [====                ] 22.3%
-Erase  : [====================] 100.0%
+## Radio setup
+Configure your controller as described on [Radio Control] page, and familiarize yourself with the position of **3-position MODE** switch and **KILL** switch. Your trims should be at zero.
 
-Program: [=======             ] 39.1%
-Program: [===============     ] 78.3%
-Program: [====================] 100.0%
+[Radio Control]: ../hardware/rc-controller.html
 
-Verify : [                    ] 1.0%
-Verify : [====================] 100.0%
-Rebooting.
-```
+## Pre-flight checks
+If this is your first flight, lets do a couple of extra checks to make sure everything works as it should.
 
-Now we have flashed a firmware on the Pixhawk. In case you didn't see this message, repeat the Upload step - you probably timed-out.
+1. flash and load the autopilot with `make upload_flight_echronos`
+2. open up GCS and check the Heads-Up-Display (HUD) - the aritifical horizon should be close to leveled and with minimal yaw drift
+3. check the [acceleration] - you should see around -9.8m/s^2 in z-axis, and around zero for x and y-axis
+4. check the [gyro] - you should see very close to zero in all three axis
+5. move the quadcopter by hand in the air and see if the HUD looks sane
 
-The next step is to connect to a running Pixhawk. Take a FTDI USB-to-serial converter cable and plug it into *TELEMETRY 1* port on Pixhawk. You should have a USB cable plugged into the Pixhawk USB port already, if that is not the case, do it now.
+Now you can move on to *Arming*
 
-![FTDI cable with the Pixhawk telemetry connector](../images/cable.jpg)
+[acceleration]: http://localhost:8080/sensors_accel.html
+[gyro]: http://localhost:8080/sensors_gyro.html
 
-Set the *Session* to *Messages and settings* and hit *Execute* as shown below.
+## Arming
+The arming sequence is as usual. There is no preflight calibration needed (no "dance" with the quadcopter). The steps are:
 
-![](../images/pprzcenter3.png)
+1. turn on your radio transmitter and make sure throttle is down, MODE SWITCH is in Manual, and KILL SWITCH is ON (throttle kill)
+2. plug in the battery - try not to wiggle the airframe excessively, as it can influence the initial orientation estimate
+3. press the red button on top of the Iris until you hear a distinct tone from the motors (yes, the motors can play sounds).
+4. check the GCS HUD  - the aritificial horizon should be more-or-less leveled and with minimal yaw drift
+5. *unkill* KILL SWITCH (i.e. move it up/towards yourself with your index finger)
+6. arm motors by pushing the yaw stick to bottom right
 
-Another pop-up window will show up, one with the messages received from the Pixhawk, another one with settings that can be changed. By default, the raw messages are not sent so we need to adjust the telemetry settings. In the *Settings* window, change the telemetry 
+## Take-Off
+For your very first flight you should try to increase the throttle very slowly, and when the quadcopter is just about to take-off (around 60% of throttle) give it small roll/pitch/yaw inputs to see if it responds correctly to your commands. If it doesn't go back to the [Radio Control] page and make sure your radio is set up correctly. Note that this near-takeoff phase induces lot of vibration in the airframe and can confuse the attitude estimator. That is OK, because in pracice we will never dwell in this phase a lot. The HUD might get some offset, but it should never diverge.
 
-![Raw messages from sensors](../images/pprzcenter4.png)
+Once you made sure your quadcopter responds properly, go ahead and increase the throttle. For all future take-offs, I recommend taking off rather quickly - ramp up the throttle to ~70% and get off the ground fast, it is the best for the estimator.
 
-### Accelerometer calibration
+## Trim
+The next step is to trim the quadcopter. Trim adds a constant input to each of the roll/pitch/yaw axis to counteract the imbalance in the airfame, not perfectly equal motors and small bias in the attitude estimation. It *holds the stick* in place for you, to make it easier for the pilot to control. The goal of the trim is to have the quadcopter in almost pefrect hover without any stick movement.
 
-### Magnetometer calibration
+How to do this? First, make sure all your trims are zeroed out. Click the trim buttons until you see on the transmitter display the little black circle for each axis over a little black square and hear a little beep.
+
+![RC trims](/images/rc_trims.png)
+
+![Zeroed trims](/images/rc_trims_zeroed.png)
+
+### Trim procedure
+1. Take-off and fly the quadcopter in manual. 
+2. Achieve a steady flight, and let go the right (roll/pitch) stick for a second. Notice where the quadcopter leans (left, right, forwards, backwards) and land.
+3. Land
+4. Move the trim button for the respective axis a few clicks and go back to 1.
+5. Repeat until the quadcopter stops leaning in any direction
+
+A small example for better illustration. 
+1. I notice the quadcoper is rolling left when I let go the stick. That means to counteract this, I need to move my roll stick to the right. I land, and give a few clicks *right* on my roll trim. I repeat until the left rolling tendency disappears.
+2. I notice the quadcopter is pitching forward. I have to trim the roll a few clicks *down* as if I was countering the forward pitch with my pitch stick. 
+3. When roll and pitch are trimmed, I focus on yaw. In stable flight, I notice that the quadcopter slowly turns right without any yaw input. I land and give a few cliks *left* on my yaw trim, to counter it.
+
+Here is an example of a radio transmitted trimmed for a particular quadcopter:
+
+![Trimmed radio](/images/rc_trims_tuned.png)
+
+## Altitude hold
+Once you trimmed the quadcopter, it is time to do the alt-hold. There are two things to do before a succesfull alt-hold:
+
+1. fly in manual mode and notice what is your nominal throttle level at a stable flight. You can use [alt-setp](http://localhost:8080/alt_setp.html) interface to see the control input (bottom plot). For our Iris without the daugherboard the nominal throttle is aroun 65%, with the additional weight it might be closer to 70-75%
+2. Change the nominal throttle in [tuning.conf](https://github.com/GaloisInc/smaccmpilot-stm32f4/blob/new-attitude-estimator/src/smaccm-flight/tuning.conf#L6) accordingly - remember that the value has to be between 0-1, so 70% will be 0.7
+3. Recompile and upload.
+
+To operate alt-hold (we recommend always starting with a full battery):
+
+1. take-off in manual, and bring the quadcopter to a leveled flight.
+2. flip the mode switch into **Alt-hold** mode
+3. bring the throttle stick all the way to 100% to give the controller full authority
+4. enjoy!
+5. to land you can either slowly lower the throttle until the quadcopter descends to the ground, or lower the throttle close to the nominal hover throttle and then switch back to manual mode
+
+Troubleshooting:
+
+1. the quadcopter looses altitude even though the throttle stick is all the way to 100%: try to increase the [I-gain](https://github.com/GaloisInc/smaccmpilot-stm32f4/blob/new-attitude-estimator/src/smaccm-flight/tuning.conf#L21) by a bit, maybe change it to like 0.009
+2. the quadcopter climbs slowly and never stops: make sure your [nominal throttle](https://github.com/GaloisInc/smaccmpilot-stm32f4/blob/new-attitude-estimator/src/smaccm-flight/tuning.conf#L6) is set properly, maybe try to lover it a notch.
+
+
+## GCS input mode
+The last step is the GCS input mode. In this mode, the pilot input's mix with the GCS operator inputs. That way the operator can steer the quadcopter where they want, while the pilot can always step in. 
+
+The procedure is following:
+
+1. take-off and go to **Alt-hold** mode
+2. once in a good alt-hold, switch to **GCS input** mode
+3. steady the quadcopter, center the sticks (and be ready to step in if needed)
+4. have the GCS operator to steer the quadcopter as needed
+5. to come back, you can switch back to **Alt-hold** at any point, and land as normally
+6. Have fun!
 
