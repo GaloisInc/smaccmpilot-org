@@ -22,7 +22,9 @@ sitemap = Tree "/" "Home"
     [ Page "index.html"            "Overview"
     , Page "blackmagic.html"       "Debugger"
     , Page "iris.html"             "Iris modifications"
+    , Page "calibration.html"      "Sensor calibration"
     , Page "rc-controller.html"    "Radio Control"
+    , Page "rc-controller-examples.html"    "Supported Radio Controllers"
     ]
   softwarepages =
     [ Page "index.html"           "Introduction"
