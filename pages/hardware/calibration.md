@@ -30,12 +30,13 @@ Where 9.81 is earths average gravity value. We can then record an important numb
 
 If you have the Pixhawk mounted in the Iris (which you probably have):
 
-1. Open Iris airfame
-2. Unplug all connectors from the Pixhawk
-3. Unscrew the top of the Pixhawk
-4. Unscrew the PCB inside (**NOTE:** remember position and orientation of the servo connectors in the back of the board before you unplug them)
-5. Place the Pixhawk PCB into a separate enclosure and secure it with at least two screws
-6. Plug in a micro USB cable into the USB port on Pixhawk, and a FTDI USB-to-serial cable to the TELEM1 port
+1. Download these two files from [Paparazzi autopilot](https://github.com/paparazzi/paparazzi) project: [calibrate.py](https://github.com/paparazzi/paparazzi/blob/master/sw/tools/calibration/calibrate.py) and [calibration_utils.py](https://github.com/paparazzi/paparazzi/blob/master/sw/tools/calibration/calibration_utils.py) and save them to `smaccmpilot-stm32f4/src/ivory-px4-hw/test-client/calibration/`. **NOTE:** these files are under GPL licence thus they cannot be included directly in our repository. If you have any problems running them later on, please refer to Paparazzi autopilot [wiki](http://wiki.paparazziuav.org/wiki/Main_Page)
+2. Open Iris airfame
+3. Unplug all connectors from the Pixhawk
+4. Unscrew the top of the Pixhawk
+5. Unscrew the PCB inside (**NOTE:** remember position and orientation of the servo connectors in the back of the board before you unplug them)
+6. Place the Pixhawk PCB into a separate enclosure and secure it with at least two screws
+7. Plug in a micro USB cable into the USB port on Pixhawk, and a FTDI USB-to-serial cable to the TELEM1 port
 
 
 ### Procedure
@@ -80,18 +81,17 @@ optimized guess : avg 9.80994055284 std 0.0241489791359
 ```
 The `avg` value should be almost exactly 1g, while the `std` should be very small (as shown above). If that is not the case, you have to repeat the calibration.
 ```
-[calibration.mpu6000.accelerometer]
-x_offset=49
-y_offset=-106
-z_offset=-139
-x_scale=0.00239826592205
-y_scale=0.00239055997826
-z_scale=0.00236000386632
+<define name="ACCEL_X_NEUTRAL" value="49"/>
+<define name="ACCEL_Y_NEUTRAL" value="-106"/>
+<define name="ACCEL_Z_NEUTRAL" value="-139"/>
+<define name="ACCEL_X_SENS" value="2.45582430418" integer="16"/>
+<define name="ACCEL_Y_SENS" value="2.44793341773" integer="16"/>
+<define name="ACCEL_Z_SENS" value="2.41664395911" integer="16"/>
 ```
 And a plot like this one:
 ![Accelerometer calibration results](../images/accel_data.png)
 14. In the top part you see a plot of our raw accel readings (notice the y-axis scale). We are trying to scale those measurements to be between -1g and +1g. The two plots in the right show the norm of accel, which as you might have guessed by now should be exactly 9.8 m/s^2. If that is not the case, you have to repeat the calibration. 
-15. copy the accelerometer offsets and scales into your `calibration.conf` file)
+15. copy the accelerometer offsets and scales into your `calibration.conf` file - below  **[calibration.mpu6000.accelerometer]** section. The *X_NEUTRAL* value goes to *x_offset* and so on, and *X_SENS* goes to *x_scale* (and so on) 
 16. `cd smaccmpilot-stm32f4/src/smaccm-flight`
 17. `make clean; make flight_echronos` to build the flight image
 18. `make upload_flight_echronos` to upload the image
@@ -152,13 +152,12 @@ optimized guess : avg 0.997178254747 std 0.0530451037009
 ```
 The `avg` should be as close to 1.0 as possible, and `std` as small as possible too.
 ```
-[calibration.lsm303d.magnetometer]
-x_offset=1002
-y_offset=-956
-z_offset=-2094
-x_scale=0.000163610823524
-y_scale=0.000171199436912
-z_scale=0.000153610069907
+<define name="MAG_X_NEUTRAL" value="397"/>
+<define name="MAG_Y_NEUTRAL" value="-281"/>
+<define name="MAG_Z_NEUTRAL" value="756"/>
+<define name="MAG_X_SENS" value="0.388798741374" integer="16"/>
+<define name="MAG_Y_SENS" value="0.382649033587" integer="16"/>
+<define name="MAG_Z_SENS" value="0.396648366431" integer="16"/>
 ```
 and plots like this:
 ![](../images/mag_cal.png)
@@ -166,7 +165,7 @@ and plots like this:
 ![Hard Iron Calibration (left-uncalibrated) (right-fitted to a sphere)](../images/Mag_fit_3d.png)
 Here we see the measurement points we took - if the sphere is not covered consistently or have holes, it means that you didn't paint the whole sphere. Note that something like this:
 ![](../images/mag_fewer_data.png) is most likely also fine.
-15. copy the mag offsets and scales into your `calibration.conf` file)
+15. copy the accelerometer offsets and scales into your `calibration.conf` file - below **[calibration.hmc5883l.magnetometer]** section (in case of the external mag) or **[calibration.lsm303d.magnetometer]** in case of the internal mag. The *X_NEUTRAL* value goes to *x_offset* and so on, and *X_SENS* goes to *x_scale* (and so on)
 16. `cd smaccmpilot-stm32f4/src/smaccm-flight`
 17. `make clean; make flight_echronos` to build the flight image
 18. `make upload_flight_echronos` to upload the image
