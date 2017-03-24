@@ -3,7 +3,7 @@
 
 ## Sensors calibration
 
-TBD - no calibration is needed at the moment. It means use your default `calibration.conf` file and do not change it.
+Before the flight it is recommended to calibrate your sensors. How to do it is described in [Sensor Calibration](../hardware/calibration.html).
 
 ## Software
 If unsure whether you have the right setup, follow the instructions on [smaccmpilot-hardware-prep][]
