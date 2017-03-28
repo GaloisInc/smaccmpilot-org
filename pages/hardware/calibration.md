@@ -33,22 +33,25 @@ If you have the Pixhawk mounted in the Iris (which you probably have):
 1. Download these two files
    from [Paparazzi autopilot](https://github.com/paparazzi/paparazzi)
    project:
-   [calibrate.py](https://github.com/paparazzi/paparazzi/blob/master/sw/tools/calibration/calibrate.py) and
-   [calibration_utils.py](https://github.com/paparazzi/paparazzi/blob/master/sw/tools/calibration/calibration_utils.py) and
+   [calibrate.py](https://raw.githubusercontent.com/paparazzi/paparazzi/61977a1b95f49fcf45e02c8c1dfebee11f34f036/sw/tools/calibration/calibrate.py) and
+   [calibration_utils.py](https://raw.githubusercontent.com/paparazzi/paparazzi/becfaed10d797e1b66374be5597347f95ff0e2bd/sw/tools/calibration/calibration_utils.py) and
    save them to
    `smaccmpilot-stm32f4/src/ivory-px4-hw/test-client/calibration/`.
    (We cannot include these files in the SMACCMPilot repositories
    since they are GPL-licensed). You may need to install the Python
    `scipy` and `matplotlib` modules for these scripts to work, e.g.,
-   `pip install scipy matplotlib`. If you have any further problems
-   with the scripts themselves, refer to Paparazzi
-   autopilot [wiki](http://wiki.paparazziuav.org/wiki/Main_Page)
-2. Open Iris airfame
-3. Unplug all connectors from the Pixhawk
-4. Unscrew the top of the Pixhawk
-5. Unscrew the PCB inside (**NOTE:** remember position and orientation of the servo connectors in the back of the board before you unplug them)
-6. Place the Pixhawk PCB into a separate enclosure and secure it with at least two screws
-7. Plug in a micro USB cable into the USB port on Pixhawk, and a FTDI USB-to-serial cable to the TELEM1 port
+   `pip install scipy matplotlib`.
+2. Apply the patch file for `calibration_utils.py`:
+   ```
+   $ cd smaccmpilot-stm32f4/src/ivory-px4-hw/test-client/calibration
+   $ patch < calibration_utils.patch
+   ```
+3. Open Iris airfame
+4. Unplug all connectors from the Pixhawk
+5. Unscrew the top of the Pixhawk
+6. Unscrew the PCB inside (**NOTE:** remember position and orientation of the servo connectors in the back of the board before you unplug them)
+7. Place the Pixhawk PCB into a separate enclosure and secure it with at least two screws
+8. Plug in a micro USB cable into the USB port on Pixhawk, and a FTDI USB-to-serial cable to the TELEM1 port
 
 
 ### Procedure
@@ -177,7 +180,7 @@ and plots like this:
 ![Hard Iron Calibration (left-uncalibrated) (right-fitted to a sphere)](../images/Mag_fit_3d.png)
 Here we see the measurement points we took - if the sphere is not covered consistently or have holes, it means that you didn't paint the whole sphere. Note that something like this:
 ![](../images/mag_fewer_data.png) is most likely also fine.
-15. copy the accelerometer offsets and scales into your `smaccmpilot-stm32f4/src/smaccm-flight/calibration.conf` file - below **[calibration.hmc5883l.magnetometer]** section (in case of the external mag) or **[calibration.lsm303d.magnetometer]** in case of the internal mag. The *X_NEUTRAL* value goes to *x_offset* and so on, and *X_SENS* goes to *x_scale* (and so on)
+15. copy the magnetometer offsets and scales into your `smaccmpilot-stm32f4/src/smaccm-flight/calibration.conf` file - below **[calibration.hmc5883l.magnetometer]** (external mag) or **[calibration.lsm303d.magnetometer]** (internal mag). The *X_NEUTRAL* value goes to *x_offset*, *X_SENS* goes to *x_scale*, and so on.
 16. `cd smaccmpilot-stm32f4/src/smaccm-flight`
 17. `make clean; make flight_echronos` to build the flight image
 18. `make upload_flight_echronos` to upload the image
