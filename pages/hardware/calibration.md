@@ -42,10 +42,10 @@ If you have the Pixhawk mounted in the Iris (which you probably have):
    `scipy` and `matplotlib` modules for these scripts to work, e.g.,
    `pip install scipy matplotlib`.
 2. Apply the patch file for `calibration_utils.py`:
-   ```
-   $ cd smaccmpilot-stm32f4/src/ivory-px4-hw/test-client/calibration
-   $ patch < calibration_utils.patch
-   ```
+```
+$ cd smaccmpilot-stm32f4/src/ivory-px4-hw/test-client/calibration
+$ patch < calibration_utils.patch
+```
 3. Open Iris airfame
 4. Unplug all connectors from the Pixhawk
 5. Unscrew the top of the Pixhawk
