@@ -43,7 +43,7 @@ If you have the Pixhawk mounted in the Iris (which you probably have):
 
 First we have to uplouad `all_sensors_test` firmware
 
-1. Make sure that `calibration.conf` file has all offsets to zero and all axis scales to `1.0` (or check `git diff calibration.conf` to make sure there are no local changes)
+1. Make sure that `smaccmpilot-stm32f4/src/ivory-px4-hw/calibration.conf` file has all **mpu6000 accelerometer** offsets to zero and all axis scales to `1.0` (or check `git diff calibration.conf` to make sure there are no local changes)
 2. `cd smaccmpilot-build/smaccmpilot-stm32f4/src/ivory-px4-hw`
 3. `make clean; make platform-fmu24/px4-all-sensors-test-gen`
 4. `cd platform-fmu24/px4-all-sensors-test`
@@ -91,7 +91,7 @@ The `avg` value should be almost exactly 1g, while the `std` should be very smal
 And a plot like this one:
 ![Accelerometer calibration results](../images/accel_data.png)
 14. In the top part you see a plot of our raw accel readings (notice the y-axis scale). We are trying to scale those measurements to be between -1g and +1g. The two plots in the right show the norm of accel, which as you might have guessed by now should be exactly 9.8 m/s^2. If that is not the case, you have to repeat the calibration. 
-15. copy the accelerometer offsets and scales into your `calibration.conf` file - below  **[calibration.mpu6000.accelerometer]** section. The *X_NEUTRAL* value goes to *x_offset* and so on, and *X_SENS* goes to *x_scale* (and so on) 
+15. copy the accelerometer offsets and scales into your `smaccmpilot-stm32f4/src/smaccm-flight/calibration.conf` file - below  **[calibration.mpu6000.accelerometer]** section. The *X_NEUTRAL* value goes to *x_offset* and so on, and *X_SENS* goes to *x_scale* (and so on) 
 16. `cd smaccmpilot-stm32f4/src/smaccm-flight`
 17. `make clean; make flight_echronos` to build the flight image
 18. `make upload_flight_echronos` to upload the image
@@ -113,11 +113,11 @@ First of all it is important to know that all ferromagnetic materials near the m
 
 ### Procedure
 
-First we have to uplouad `all_sensors_test` firmware
+First we have to uplouad `all_sensors_ext_mag_test` firmware. This firmware is different for the external (HMC5883L) magnetometer. If you want to calibrate for the internal (LSM303D) magnetometer (default), you can skip to step 9.
 
-1. Make sure that `calibration.conf` file has **magnetometer** offsets to zero and **magnetometer** axis scales to `1.0` (or check `git diff calibration.conf` to make sure there are no local changes)
+1. Make sure that `smaccmpilot-stm32f4/src/ivory-px4-hw/calibration.conf` file has **magnetometer** offsets to zero and **magnetometer** axis scales to `1.0` (or check `git diff calibration.conf` to make sure there are no local changes)
 2. `cd smaccmpilot-build/smaccmpilot-stm32f4/src/ivory-px4-hw`
-3. `make clean; make platform-fmu24/px4-all-sensors-test-gen`
+3. `make clean; make platform-fmu24/px4-all-sensors-ext-mag-test-gen`
 4. `cd platform-fmu24/px4-all-sensors-test`
 5. `python px_uploader.py --port /dev/ttyACM0 image.px4` (on Linux) For OS X use your own port name.
 
@@ -137,7 +137,7 @@ For the *hard-iron* calibration, we need to move the magnetometer with all axis 
 205.424 66 IMU_MAG_RAW -2169 -2595 7959
 ```
 9. now lets start recording data `python sensorsmonitor-calibration.py /dev/ttyUSB0 > magCal1.data` (replace `magCal1.data` with your own file name). 
-10. immediately after you start recording, move the Pixhawk into each of the positions shown above and keep it there in a steady state for 6-10 seconds.
+10. immediately after you start recording, start with the *hard-iron* calibration (see above how to do so).
 11. once finished, stop recording (`Ctrl+C`)
 12. run calibration script on recorded data `./calibration/calibrate.py -s MAG -p -v magCal1.data `
 13. you will see something like
@@ -165,7 +165,7 @@ and plots like this:
 ![Hard Iron Calibration (left-uncalibrated) (right-fitted to a sphere)](../images/Mag_fit_3d.png)
 Here we see the measurement points we took - if the sphere is not covered consistently or have holes, it means that you didn't paint the whole sphere. Note that something like this:
 ![](../images/mag_fewer_data.png) is most likely also fine.
-15. copy the accelerometer offsets and scales into your `calibration.conf` file - below **[calibration.hmc5883l.magnetometer]** section (in case of the external mag) or **[calibration.lsm303d.magnetometer]** in case of the internal mag. The *X_NEUTRAL* value goes to *x_offset* and so on, and *X_SENS* goes to *x_scale* (and so on)
+15. copy the accelerometer offsets and scales into your `smaccmpilot-stm32f4/src/smaccm-flight/calibration.conf` file - below **[calibration.hmc5883l.magnetometer]** section (in case of the external mag) or **[calibration.lsm303d.magnetometer]** in case of the internal mag. The *X_NEUTRAL* value goes to *x_offset* and so on, and *X_SENS* goes to *x_scale* (and so on)
 16. `cd smaccmpilot-stm32f4/src/smaccm-flight`
 17. `make clean; make flight_echronos` to build the flight image
 18. `make upload_flight_echronos` to upload the image
