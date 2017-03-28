@@ -30,7 +30,19 @@ Where 9.81 is earths average gravity value. We can then record an important numb
 
 If you have the Pixhawk mounted in the Iris (which you probably have):
 
-1. Download these two files from [Paparazzi autopilot](https://github.com/paparazzi/paparazzi) project: [calibrate.py](https://github.com/paparazzi/paparazzi/blob/master/sw/tools/calibration/calibrate.py) and [calibration_utils.py](https://github.com/paparazzi/paparazzi/blob/master/sw/tools/calibration/calibration_utils.py) and save them to `smaccmpilot-stm32f4/src/ivory-px4-hw/test-client/calibration/`. **NOTE:** these files are under GPL licence thus they cannot be included directly in our repository. If you have any problems running them later on, please refer to Paparazzi autopilot [wiki](http://wiki.paparazziuav.org/wiki/Main_Page)
+1. Download these two files
+   from [Paparazzi autopilot](https://github.com/paparazzi/paparazzi)
+   project:
+   [calibrate.py](https://github.com/paparazzi/paparazzi/blob/master/sw/tools/calibration/calibrate.py) and
+   [calibration_utils.py](https://github.com/paparazzi/paparazzi/blob/master/sw/tools/calibration/calibration_utils.py) and
+   save them to
+   `smaccmpilot-stm32f4/src/ivory-px4-hw/test-client/calibration/`.
+   (We cannot include these files in the SMACCMPilot repositories
+   since they are GPL-licensed). You may need to install the Python
+   `scipy` and `matplotlib` modules for these scripts to work, e.g.,
+   `pip install scipy matplotlib`. If you have any further problems
+   with the scripts themselves, refer to Paparazzi
+   autopilot [wiki](http://wiki.paparazziuav.org/wiki/Main_Page)
 2. Open Iris airfame
 3. Unplug all connectors from the Pixhawk
 4. Unscrew the top of the Pixhawk
