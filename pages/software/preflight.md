@@ -10,7 +10,7 @@ If unsure whether you have the right setup, follow the instructions on [smaccmpi
 
 [smaccmpilot-hardware-prep]: https://github.com/GaloisInc/smaccmpilot-hardware-prep
 
-Once done with the hardware prep, load *smaccmpilot* autopilot. Temporarily (as of 3.17) use `new-attitude-estimator` branch from [Github][]. Don't forget to do:
+Once done with the hardware prep, load *smaccmpilot* autopilot. **Temporarily** (as of 3.17) use `new-attitude-estimator` branch from [Github][]. Don't forget to do:
 
 ```
 stack clean
@@ -22,7 +22,7 @@ make flight_echronos
 
 
 ## Radio setup
-Configure your controller as described on [Radio Control] page, and familiarize yourself with the position of **3-position MODE** switch and **KILL** switch. Your trims should be at zero.
+Configure your controller as described on [Radio Control] page, and familiarize yourself with the position of **3-position MODE** switch and **KILL** switch. Your trims should be zeroed out.
 
 [Radio Control]: ../hardware/rc-controller.html
 
@@ -34,26 +34,30 @@ If this is your first flight, lets do a couple of extra checks to make sure ever
 3. check the [acceleration] - you should see around -9.8m/s^2 in z-axis, and around zero for x and y-axis
 4. check the [gyro] - you should see very close to zero in all three axis
 5. move the quadcopter by hand in the air and see if the HUD looks sane
+6. check the [mag] - if you move the quadcopter around, you should see all three axis changing. Don't worry about the units, the magnetic vector is normalized before it is used.
 
 Now you can move on to *Arming*
 
 [acceleration]: http://localhost:8080/sensors_accel.html
 [gyro]: http://localhost:8080/sensors_gyro.html
+[mag]: http://localhost:8080/sensors_mag.html
 
 ## Arming
-The arming sequence is as usual. There is no preflight calibration needed (no "dance" with the quadcopter). The steps are:
+To arm the quadcopter:
 
-1. turn on your radio transmitter and make sure throttle is down, MODE SWITCH is in Manual, and KILL SWITCH is ON (throttle kill)
-2. plug in the battery - try not to wiggle the airframe excessively, as it can influence the initial orientation estimate
-3. press the red button on top of the Iris until you hear a distinct tone from the motors (yes, the motors can play sounds).
+1. turn on your radio transmitter and make sure *throttle* is **down**, *MODE SWITCH* is in **Manual**, and *KILL SWITCH* is **ON** (throttle kill)
+2. plug in the battery - try not to wiggle the airframe excessively, as it can influence the initial orientation estimate.
+4. you will hear two beeps from the motors (yes, the motors can play sounds). It means the motors are alive.
+4. press the red button on top of the Iris until you hear a third beep from the motors. It means the motors are ready and listening to commands.
 4. check the GCS HUD  - the aritificial horizon should be more-or-less leveled and with minimal yaw drift
-5. *unkill* KILL SWITCH (i.e. move it up/towards yourself with your index finger)
-6. arm motors by pushing the yaw stick to bottom right
+6. **unkill** the *KILL SWITCH* (i.e. move it up/towards yourself with your index finger)
+6. now arm the motors by briefly pushing the yaw stick to bottom right 
+
 
 ## Take-Off
-For your very first flight you should try to increase the throttle very slowly, and when the quadcopter is just about to take-off (around 60% of throttle) give it small roll/pitch/yaw inputs to see if it responds correctly to your commands. If it doesn't go back to the [Radio Control] page and make sure your radio is set up correctly. Note that this near-takeoff phase induces lot of vibration in the airframe and can confuse the attitude estimator. That is OK, because in pracice we will never dwell in this phase a lot. The HUD might get some offset, but it should never diverge.
+For your very first flight you should try to increase the throttle very slowly, and when the quadcopter is just about to take-off (around 60% of throttle) give it small roll/pitch/yaw inputs to see if it responds correctly to your commands. If it doesn't, go back to the [Radio Control] page and make sure your radio is set up correctly. Note that this near-takeoff phase induces lot of vibration in the airframe and can confuse the attitude estimator. That is OK, because in pracice we will never dwell here for long. The HUD might get some offset, but it should never diverge.
 
-Once you made sure your quadcopter responds properly, go ahead and increase the throttle. For all future take-offs, I recommend taking off rather quickly - ramp up the throttle to ~70% and get off the ground fast, it is the best for the estimator.
+Once you made sure your quadcopter responds properly, go ahead and increase the throttle. For all future take-offs, I recommend taking off rather quickly - ramp up the throttle to ~70% and get off the ground fast, it is the best for the estimator (and also looks way cooler).
 
 ## Trim
 The next step is to trim the quadcopter. Trim adds a constant input to each of the roll/pitch/yaw axis to counteract the imbalance in the airfame, not perfectly equal motors and small bias in the attitude estimation. It *holds the stick* in place for you, to make it easier for the pilot to control. The goal of the trim is to have the quadcopter in almost pefrect hover without any stick movement.
@@ -111,5 +115,6 @@ The procedure is following:
 3. steady the quadcopter, center the sticks (and be ready to step in if needed)
 4. have the GCS operator to steer the quadcopter as needed
 5. to come back, you can switch back to **Alt-hold** at any point, and land as normally
-6. Have fun!
+
+**Have fun!**
 

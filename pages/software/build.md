@@ -9,14 +9,14 @@ without it.
 There are a number of repositories used in the build. You have some choices in
 how to acquire those sources. The easiest is the following:
 
-```> git clone https://github.com/smaccm/phase2/```
+```> git clone https://github.com/smaccm/phase3/```
 
-The `phase2` project contains scripts that downloads and builds the entire
+The `phase3` project contains scripts that downloads and builds the entire
 project, including dependencies, assuming a bare Ubuntu 12.04 amd64 machine with
 at least 50GB of memory. If you provision a similar (virtual) machine, these
 scripts should work for you. The scripts run are located in `scripts/` and the
 entry point is `main.sh`. The build is run on Travis-CI:
-<https://travis-ci.org/smaccm/phase2>, and you can see the output of a
+<https://travis-ci.org/smaccm/phase3>, and you can see the output of a
 successful build there. . If you are building on a different system, use these
 scripts as a guide. The first time you run the scripts, run `bootstrap.sh`
 manually to install the prerequisites.
@@ -31,8 +31,8 @@ machines.
 
 The build was successful if you generated the following two images:
 
-* `phase2\pixhawk-image`
-* `phase2\odroid-image`
+* `phase3/pixhawk-image`
+* `phase3/tk1-image`
 
 ## Test Apps
 

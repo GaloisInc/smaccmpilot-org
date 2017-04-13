@@ -5,7 +5,7 @@ for SMACCMPilot. There are two main components in SMACCMPilot: the **mission
 computer** and the **flight controller**. The mission computer manages
 networking with the ground control station (GCS) and hosting high-level
 applications (e.g., a webcam running on Linux). The flight controller executes
-the core flight functionality.
+the core flight functionality (e.g. stabilization and motor control).
 
 ## Flight Controller
 
@@ -22,17 +22,19 @@ in the [smaccmpilot-hardware-prep][] repository. Clone this repository and
 follow the steps in the `README` documents. This only needs to be done once even
 if you modify the flight controller software later.
 
-The Pixhawk must be prepared for SMACCMPilot. Follow the instructions here:
-[smaccmpilot-hardware-prep](https://github.com/galoisinc/smaccmpilot-hardware-prep).
-
+[smaccmpilot-hardware-prep]: https://github.com/galoisinc/smaccmpilot-hardware-prep
 
 ## Mission Controller
+
+### TK-1-SOM
+
+**TODO**
+
+### ODROID (deprecated)
 
 The mission controller includes a Hardkernel
 [ODROID-XU](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G137510300620)
 (discontinued) development board with a custom daughter board developed by NICTA.
-
-### Hardware Preparation
 
 #### Linux Filesystem
 

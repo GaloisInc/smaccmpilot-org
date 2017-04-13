@@ -2,13 +2,6 @@
 
 Here we describe how to modify your Iris with additional sensors so it can be used for a stabilized indoor flight.
 
-This page will describe the basic components needed to build a hardware platform
-for SMACCMPilot. There are two main components in SMACCMPilot: the **mission
-computer** and the **flight controller**. The mission computer manages
-networking with the ground control station (GCS) and hosting high-level
-applications (e.g., a webcam running on Linux). The flight controller executes
-the core flight functionality.
-
 ## Parts
 You will need these parts: 
 
@@ -80,3 +73,6 @@ Third hand comes handy here. Use some shrinktube to protect the solder joints. O
 
 And that is it! 
 
+# TOOO: Lidar + Cap modification
+# TODO: Optional external mag mounting
+# TODO: TK-1 mounting

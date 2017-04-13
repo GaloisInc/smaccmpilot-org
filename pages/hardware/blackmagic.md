@@ -8,23 +8,18 @@ from [Black Sphere Technologies][blacksphere].
 
 ### PX4 Autopilot Project Guide
 
-As your primary resource, please read the PX4 Autopilot project wiki [guide to
-using the Black Magic Probe][guide].
+As your primary resource, please read [the Black Magic Probe project wiki][guide].
 
 ### Upgrading Firmware
 
-We've found that most Black Magic Probes do not ship with the very latest
-firmware. In order to support the PX4FMU's STM32F4 processor, you should
-please [follow the instructions on the PX4 Autopilot wiki][guide] to clone
+We've found that some Black Magic Probes do not ship with the very latest
+firmware. In order to support the PX4FMU's STM32F4 processor, we recommend to [follow the instructions on the Black Magic Probe wiki][guide] to clone
 and build the latest black magic firmware and load it on your device.
 
 ### GDB Init Script
 
-We use a simpler gdb init script from the one described on the PX4 wiki
-due to differences in operating system implementation and environment.
-
 Copy the following to a `.gdbinit` script in the root directory of your
-`smaccmpilot-stm32f4` repository:
+[smaccmpilot-stm32f4][] repository:
 
 ```
 target extended SERIAL_PORT
@@ -37,12 +32,12 @@ Black Magic probe.
 
 ### Using GDB
 
-From the root of the `smaccmpilot-stm32f4` repository, after successfully
+From the root of the [smaccmpilot-stm32f4][] repository, after successfully
 [building the SMACCMPilot executable](../software/build.html),
 start your ARM toolchain gdb with the `flight` executable.
 
 ```
-arm-none-eabi-gdb build/px4fmu17_ioar_freertos/img/flight
+arm-none-eabi-gdb platform-fmu24/standalone-flight/image
 
 ```
 
@@ -70,7 +65,7 @@ card](http://www.cs.berkeley.edu/~mavam/teaching/cs161-sp11/gdb-refcard.pdf)
 while debugging.
 
 
-[bmprobe]: http://www.blacksphere.co.nz/main/blackmagic
+[bmprobe]: https://github.com/blacksphere/blackmagic
 [blacksphere]: http://www.blacksphere.co.nz/main/index.php
-
-[guide]: http://pixhawk.ethz.ch/px4/dev/jtag/black_magic_probe
+[smaccmpilot-stm32f4]: https://github.com/GaloisInc/smaccmpilot-stm32f4
+[guide]: https://github.com/blacksphere/blackmagic/wiki

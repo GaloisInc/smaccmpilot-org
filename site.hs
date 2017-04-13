@@ -15,7 +15,7 @@ sitemap = Tree "/" "Home"
   , (Tree "software"   "Software"  softwarepages)
   , (Tree "hardware"   "Hardware"  hardwarepages)
   , (Page "about.html" "About")
-  , (Page "news.html"  "News")
+--  , (Page "news.html"  "News")
   ]
   where
   hardwarepages =
@@ -116,7 +116,7 @@ navbar currentpath = unlines $
   , entry "/software/index.html"  "Software"
   , entry "/hardware/index.html"  "Hardware"
   , entry "/about.html"           "About"
-  , entry "/news.html"            "News"
+--  , entry "/news.html"            "News"
   , "</ul>"
   ]
   where

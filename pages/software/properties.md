@@ -9,14 +9,13 @@ have that those requirements are met.
 
 ## Philosophy and Approach
 
-As of November 2013, SMACCMPilot is some 50k LOCs of C code and growing.
-(Because the C code is generated, this code is perhaps twice the length of
-comparable hand-written code.)
+As of March 2017, SMACCMPilot is some 125k LOCs of C code for the eChronos build, and around 130k LOCs for the FreeRTOS build.
+Because the C code is generated, this code is perhaps twice the length of comparable hand-written code.
 Nonetheless, SMACCMPilot (or any fully-featured autopilot) will be tens of
 thousands or more of lines of code.
 
-Our goal is to build an autopilot from-scratch quickly: our (end of) 2013
-release represents only about 2 engineer years of development.  Consequently,
+Our goal is to build an autopilot from-scratch quickly: the first release in 2013
+represented only about 2 engineer years of development. Consequently,
 verification approaches that require significant manual labor (e.g., interactive
 theorem-proving) or that do not scale to large code-bases (e.g., model-checking)
 are not practical.  Furthermore, we are taking a "green-field" approach rather
@@ -35,7 +34,7 @@ interested in high-assurance software development.
 ### Code Generation
 SMACCMPilot is developed using [Ivory and Tower](../../languages/index.html),
 two domain-specific languages developed under the project.  These languages
-improve programmer productivity but also ensure correctness properties *by
+improve programmer's productivity but also ensure correctness properties *by
 construction*.
 
 Ivory is designed to be expressive while providing evidence that the generated
@@ -81,14 +80,12 @@ Tower lifts the level of abstraction in developing inter-communicating tasks
 
 ### Testing
 During development and internal deployment, we always execute code with assertions
-turned on always.
+turned on.
 
 We have also implemented a
 [QuickCheck](http://www.cse.chalmers.se/~rjmh/QuickCheck/manual.html) harness
 for Ivory.  We use QuickCheck to test some portions of SMACCMPilot, easily
 generating 100s of thousands of calls to C functions with random arguments.
-
-We plan to extend our use of QuickCheck to more of SMACCMPilot in the future.
 
 ### Static Analysis
 
@@ -99,16 +96,11 @@ SMACCMPilot is analyzed by [Coverity](https://scan.coverity.com/projects/1420).
            src="https://scan.coverity.com/projects/1420/badge.svg"/>
 		            </a>
 
-In addition, we have been used the open-source C model-checker
+In addition, we have been using the open-source C model-checker
 [CBMC](http://www.cprover.org/cbmc/).  CBMC is an excellent model-checker for
 verifying C source code, and we have found bugs in SMACCMPilot using it.
-
 However, it no longer scales due to the size of the code-base since it performs
 whole-program analysis.
-
-We are currently in the process of writing a domain-specific model-checker
-customized to Ivory which we hope will scale better.  Until then, there may be
-latent unchecked integer under/overflows or divisions-by-zero.
 
 ### Runtime Verification
 
@@ -117,9 +109,7 @@ code to capture global state values whenever a variable changes.  The framework
 is built using a combination of [GCC plugins](http://gcc.gnu.org/wiki/plugins)
 and Ivory macros for generating monitoring code based on [past-time linear
 temporal logic](http://fsl.cs.illinois.edu/index.php/Past_Time_Linear_Temporal_Logic)
-assertions.
-
-The framework is primarily intended for monitoring (and responding to failures)
+assertions. The framework is primarily intended for monitoring (and responding to failures)
 in untrusted C code.
 
 ## Trusted and Untrusted Artifacts
@@ -135,12 +125,7 @@ the overall system.
 - *Ground control station* (GCS): The GCS software has no particular assurance
    built into it.  See below for more about cryptography and GCS communications.
 
-- *ArduPilot libraries*: SMACCMPilot currently relies on a small (and
-   decreasing) amount of ArduPilot code for sensor input and filtering.
-
-- *Board support package*: SMACCMPilot relies on C drivers to interact with the
-   PX4 hardware.  These are being replaced with Ivory-implemented drivers, where
-   possible.
+- *Board support package*: SMACCMPilot uses Ivory-implemented drivers for most of the IO, although it still relies on C drivers for PWM output and PPM radio input capture.
 
 - *libc*: SMACCMPilot applications link to libc.
 
@@ -149,13 +134,7 @@ the overall system.
   you are not afraid of compiler bugs, consider how many GCC bugs have been
   discovered by [Csmith](http://embed.cs.utah.edu/csmith/)).
 
-- *MAVLink*: SMACCMPilot currently uses the
-   [MAVLink](http://qgroundcontrol.org/mavlink/start) protocol to communicate
-   with the GCS.  Parsers and serializers are generated from XML specifications
-   using a Python code generator.  The parsers and serializers that are
-   generated are Ivory programs, so they will have the
-   memory-safety/well-defined properties that all Ivory programs have, but they
-   may have logical bugs.
+- *GIDL Communication Schema*: SMACCMPilot uses a custom and autogenerated [comm schema](https://github.com/GaloisInc/smaccmpilot-stm32f4/tree/master/src/smaccm-comm-schema), where the autopilot responds to message requests initiated by the GCS. The Comm schema also supports strong encryption, as described below.
 
 - *RTOS*: see below.
 
@@ -163,28 +142,27 @@ the overall system.
 
 ### RTOS Assurance
 
-The publicly available version of SMACCMPilot is built on
+SMACCMPilot can be run on
 [FreeRTOS](www.freertos.org), a small, open-source, real-time operating system.
 FreeRTOS is written in C and is well tested and well documented; our experience
 is that it is highly-reliable.
 
-A (closed-source) fork of SMACCMPilot is built on NICTA's
+Another option is to comile SMACCMPilot to run on NICTA's
 [eChronos](http://ssrg.nicta.com.au/projects/TS/echronos/) RTOS.  eChronos is
 formally-verified, in much of same spirit as NICTA's
 [L4 Verified](http://www.ertos.nicta.com.au/research/l4.verified/)  project.
 
+
 ### GCS Security
 
 We have developed an
-[end-to-end encryption system](gcs.html#communication-protocol-and-security) for
+[end-to-end encryption system][GEC] called *Galois Embedded Crypto (GEC)* for
 ground control system (GCS) communication.  The design is based on a
 well-defined and studied standard, [AES in Galois/Counter mode][aesgcm-wiki],
 and the implementations are built on top of open-source implementations in C and
 Haskell.
 
-We do not currently have a key-distribution scheme implemented, so SMACCMPilot
-communication has all of the risks associated with using stale, leaked, or
-default keys.
+[GEC] is loosely based on the station-to-station key exchange protocol followed by ongoing communications secured with traditional symmetric-key cryptography.
 
 The encryption/authentication SMACCMPilot firmware executes as a RTOS
 task, in the same address space as all of the other firmware.  Thus, if an
@@ -197,17 +175,18 @@ However, assuming the following should hold of SMACCMPilot:
 - All data sent to the GCS by SMACCMPilot is encrypted.
 - All data received from the GCS is decrypted and authenticated, and if either
   fails, the message is ignored by the system.
-- Only MAVLink messages that SMACCMPilot is configured to process and that are
+- Only messages that SMACCMPilot is configured to process and that are
   well-formed can affect SMACCMPilot's behavior.
-- Furthermore, a MAVLink message can only affect the portion of SMACCMPilot's
+- Furthermore, a commlink message can only affect the portion of SMACCMPilot's
   behavior it is defined for.
+
+[GEC]: https://github.com/GaloisInc/gec
 
 ## Miscellaneous Vulnerabilities
 
 - We do not address against sensor spoofing attacks (and GPS spoofing in
-  particular).  We do not currently validate GPS input streams. These
-  unvalidated streams affect the inertial navigation system, so, we expect a
-  GPS spoofing attack could compromise the ability to fly.
+  particular).  However, the SMACCMPilot is by default configured to fly without GPS, so unless GPS is used for navigation, a
+  GPS spoofing attack doesn't compromise the ability to fly.
 - We do not address radio-link bandwidth saturation.
 - We do not address hardware/sensor vulnerabilities or faults.
 - We do not validate user input to ensure a pilot's behavior is safe.  If you

@@ -12,11 +12,6 @@ machine:
 * [Building SMACCMPilot](build.html)
 * [Uploading SMACCMPilot to hardware](loading.html)
 
-<!-- ### Flight Software Guide -->
-
-<!-- A guide to understanding the flight software: -->
-
-<!-- * [Flight software overview](flight-overview.html) -->
 
 ### Ground Control Software Guide
 
@@ -26,7 +21,7 @@ A guide to understanding the ground control software:
 
 ### Hardware preparation
 
-The `smaccmpilot-build/smaccmpilot-hardware-prep` repository contains
+The [smaccmpilot-hardware-prep](https://github.com/galoisinc/smaccmpilot-hardware-prep) repository contains
 instructions for preparing a Pixhawk based quadcopter to run the SMACCMPilot
 flight software.
 

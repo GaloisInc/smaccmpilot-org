@@ -1,20 +1,31 @@
 # Uploading SMACCMPilot
 
-*IMPORTANT:* These instructions assume you've completed the instructions for
-[building SMACCMPilot][building], you have a complete [SMACCMPilot flight
+**IMPORTANT:** These instructions assume you've completed the instructions for
+[building SMACCMPilot][building], and you have a complete [SMACCMPilot flight
 platform][hardware].
 
-There are two boards to flash: the PX4 and the ODROID-XU. We describe each below.
+There are two boards to flash: 
+
+- [Pixahwk][Pixhawk]
+- [Colorado Engineering TK-1][TK-1] with [NVIDIA Tegra K1 SoC][tegra]  
+
+Alternatively [ODROID-XU][ODROID-XU] can be used instead of TK-1.
+  
+We describe each board below.
 
 [building]: build.html
 [hardware]: ../hardware/index.html
+[Pixhawk]: https://pixhawk.org/modules/pixhawk
+[TK-1]: https://coloradoengineering.com/standard-products/tk1-som-8gb/
+[tegra]: https://coloradoengineering.com/standard-products/tk1-som-8gb/
+[ODROID-XU]: http://odroid.com/dokuwiki/doku.php?id=en:odroid-xu4
 
 ## PX4 Loading
 
 Before you begin, determine whether you want to use the PX4 USB Bootloader, or
-whether you prefer to use a JTAG programmer such as the Black Magic Probe.
+whether you prefer to use a JTAG programmer such as the [Black Magic Probe](https://github.com/blacksphere/blackmagic/wiki).
 Instructions for both cases are below. Note that for the
-[hardware](../hardware/index.md) the casing has to be cut away to use the probe.
+[hardware](../hardware/index.md) the casing has to be cut away and solder on JTAG header in order to use the probe.
 
 ### PX4 USB Bootloader
 
@@ -37,8 +48,7 @@ comes flashed from the factory and SMACCMPilot project binaries should not
 overwrite it unless configured to and loaded via the Black Magic Probe. However,
 if you have overwritten the bootloader, it is easy to replace.
 
-The PX4 bootloader for the Pixhawk is distributed as a binary in the [`smaccmpilot-hardware-prep`
-repository][blbin].
+The PX4 bootloader for the Pixhawk is distributed as a binary in the [smaccmpilot-hardware-prep][blbin] repository.
 
 [blbin]: https://github.com/GaloisInc/smaccmpilot-hardware-prep/tree/master/fmu_bootloader
 
@@ -65,7 +75,7 @@ linked to sit at the beginning of flash.
 The bootloader is active for the first five seconds after the Pixhawk is powered
 on.  When active, the bootloader will rapidly flash the red LED only. The
 uploader must initiate communication with the Pixhawk while the bootloader is
-active. N.B.: we have had problems trying to use the bootloader from within a virtual
+active. Because of this five second time limit, we have had problems trying to use the bootloader from within a virtual
 machine.
 
 If there is no program flashed to the Pixhawk, bootloader will stay active for as
@@ -131,6 +141,12 @@ on the [Black Magic Probe][blackmagic] page.
 
 [blackmagic]: ../hardware/blackmagic.html
 
+
+## TK-1 Loading
+
+**TODO**
+
+
 ## ODROID Loading
 
 ![](/images/odroid-xu-ports.png)
@@ -173,7 +189,7 @@ sudo fastboot boot <path-to-image>/odroid-image
 ```
 
 You should see the system boot and eventually reach a Linux login prompt. The
-user and password are `root` and `odroid`, respectively. You can no safely
+user and password are `root` and `odroid`, respectively. You can now safely
 detach the microUSB cable and optionally the serial console. If you have used a
 wifi adapter (plugged into a USB port on the ODROID board) or ethernet cable,
 you can ssh into Linux.

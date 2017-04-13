@@ -6,21 +6,25 @@
 
 <br>
 
-SMACCMPilot is a project by [Galois, Inc](http://corp.galois.com).
+SMACCMPilot is a project by [Galois, Inc](http://galois.com).
 
 The SMACCMPilot team is:
 
-- [James Bielman](http://corp.galois.com/james-bielman/)
-- [Thomas DuBuisson](http://corp.galois.com/tom-dubuisson/)
-- [Trevor Elliott](http://corp.galois.com/trevor-elliott/)
-- [John Launchbury](http://corp.galois.com/john-launchbury)
-- [Lee Pike](http://corp.galois.com/lee-pike/)
+- [Lee Pike](http://galois.com/team/lee-pike/)
+- [Adam Foltzer](http://galois.com/team/adam-foltzer/)
+- [Michal Podhradsky](http://podhrmic.github.io/)
 
 Alumi are:
 
+- [Thomas DuBuisson](http://galois.com/team/tom-dubuisson/)
+- [Trevor Elliott](http://galois.com/team/trevor-elliott/)
+- [John Launchbury]()
+- [James Bielman]()
 - [Erlend Hamberg](http://hamberg.no/erlend/about.html)
-- [Pat Hickey](http://moreproductive.org)
+- [Pat Hickey]()
 
+
+### License
 
 The SMACCMPilot project software is released under an open-source BSD License.
 See License files [in the source repositories][github] for more information.
@@ -48,11 +52,11 @@ SMACCMPilot is developed as part of the Secure Mathematically-Assured
 Composition of Control Models (SMACCM) research project, under DARPA's
 [High-Assurance Cyber Military Systems][hacms] (HACMS) program.
 
-[hacms]: http://www.darpa.mil/Our_Work/I2O/Programs/High-Assurance_Cyber_Military_Systems_(HACMS).aspx
+[hacms]: http://www.darpa.mil/program/high-assurance-cyber-military-systems
 
 ### About this site
 
-The contents of [smaccmpilot.org][org] are Copyright 2013, Galois Inc. All Rights
+The contents of [smaccmpilot.org][org] are Copyright 2017, Galois Inc. All Rights
 Reserved.
 
 [org]: http://smaccmpilot.org
