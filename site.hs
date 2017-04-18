@@ -14,17 +14,28 @@ sitemap = Tree "/" "Home"
   [ (Page "index.html" "Overview")
   , (Tree "software"   "Software"  softwarepages)
   , (Tree "hardware"   "Hardware"  hardwarepages)
+  , (Page "media.html" "Media")
   , (Page "about.html" "About")
---  , (Page "news.html"  "News")
   ]
   where
   hardwarepages =
     [ Page "index.html"            "Overview"
-    , Page "blackmagic.html"       "Debugger"
-    , Page "iris.html"             "Iris modifications"
-    , Page "calibration.html"      "Sensor calibration"
-    , Page "rc-controller.html"    "Radio Control"
-    , Page "rc-controller-examples.html"    "Supported Radio Controllers"
+    , Page "iris.html"             "Iris add-ons"
+    , Group "Debugging"
+      [ Page "blackmagic.html"       "Debugger"
+      ]
+    , Group "Sensors"
+      [ Page "calibration.html"      "Calibration"
+      ]
+    , Group "Modifications"
+      [ Page "lidar_and_sonar_mounting.html"             "Lidar and PX4Flow"
+      , Page "tk1_daughterboard.html"             "TK-1 daughterboard"
+      ]
+    , Group "Controllers"
+      [ Page "rc-controller.html"    "Radio Control"
+      , Page "rc-controller-examples.html"    "Supported Radio Controllers"
+      , Page "xbox.html"    "Gamepad Control"
+      ]
     ]
   softwarepages =
     [ Page "index.html"           "Introduction"
@@ -34,16 +45,11 @@ sitemap = Tree "/" "Home"
       , Page "loading.html"           "Loading"
       , Page "preflight.html"         "Flight preparation"
       ]
-    -- , Group "Flight Software"
-    --   [ Page "flight-overview.html"   "Overview"
-    --   ]
     , Group "Ground Control Software"
       [ Page "gcs-overview.html"      "Overview"
       ]
     , Group "Communications Security"
       [ Page "commsec-overview.html" "Overview"
-      -- , Page "commsec-encapsulation.html" "Encapsulation"
-      -- , Page "commsec-keyexchange.html" "Key Exchange"
       ]
     ]
 
@@ -115,8 +121,8 @@ navbar currentpath = unlines $
   , entry "http://ivorylang.org" "Languages"
   , entry "/software/index.html"  "Software"
   , entry "/hardware/index.html"  "Hardware"
+  , entry "/media.html"         "Media"
   , entry "/about.html"           "About"
---  , entry "/news.html"            "News"
   , "</ul>"
   ]
   where
@@ -137,7 +143,7 @@ templated t input = loadAndApplyTemplate t ctx input >>= relativizeUrls
     , field "sidebar"   $ \item -> return (sidebarHTML sitemap item)
     , field "directory" $ \item -> return (itemDirectory item)
     , field "filepath"  $ \item -> return (itemFilePath item)
-    , constField "copyright" "<p>&copy; Galois Inc. 2013</p>"
+    , constField "copyright" "<p>&copy; Galois Inc. 2017</p>"
     , defaultContext
     ]
 
