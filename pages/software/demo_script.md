@@ -1,6 +1,6 @@
-# HACMS Phase 3 Demo Script
+# Demo Flight
 
-The HACMS Phase 3 SMACCMcopter demo consists of two scenarios: a successful attack and
+The SMACCMPilot demo consists of two scenarios: a successful attack and
 a failed attack. Both attacks start from the assumption that the hacker has root access on the
 Linux VM hosting the camera software. The hacker is then looking to escalate his access and/or
 compromise the mission. In the successful attack the hacker is able eventually able to take over
