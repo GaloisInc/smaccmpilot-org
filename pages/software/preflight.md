@@ -1,22 +1,27 @@
 # Flight preparation
 
+This page describes how to prepare the SMACCMPilot powered Iris+ for flight. Follow the instructions carefuly.
 
 ## Sensors calibration
 
-Before the flight it is recommended to calibrate your sensors. How to do it is described in [Sensor Calibration](../hardware/calibration.html).
+Before the flight it is recommended to calibrate your sensors. How to do it is described in [Sensor Calibration](../hardware/calibration.html). However, we found out that the default *out-of-the-box* calibration works quite well, so proceed with calibration only if you are not satisfied with the flight performance.
 
 ## Software
 If unsure whether you have the right setup, follow the instructions on [smaccmpilot-hardware-prep][]
 
 [smaccmpilot-hardware-prep]: https://github.com/GaloisInc/smaccmpilot-hardware-prep
 
-Once done with the hardware prep, load *smaccmpilot* autopilot. **Temporarily** (as of 3.17) use `new-attitude-estimator` branch from [Github][]. Don't forget to do:
+Once done with the hardware prep, load *smaccmpilot* autopilot. Use `master` branch from [Github][]. Don't forget to do:
 
 ```
 stack clean
 make clean
 make flight_echronos
 ```
+
+It is better to clean stack at least for the first compilation. We found out that stack sometimes doesn't clean and rebuild the right dependencies which can lead to errors during compilation (usually after switching branches or making major code changes). If you run into a compilation error, try first `stack clean; make clean;`
+
+**NOTE:** `flight_echronos` is the preferred target, however you can compile SMACCMPilot to run on FreeRTOS instead, just type `make flight`
 
 [Github]: https://github.com/GaloisInc/smaccmpilot-stm32f4/commits/new-attitude-estimator
 
@@ -29,12 +34,15 @@ Configure your controller as described on [Radio Control] page, and familiarize 
 ## Pre-flight checks
 If this is your first flight, lets do a couple of extra checks to make sure everything works as it should.
 
-1. flash and load the autopilot with `make upload_flight_echronos`
+1. flash and load the autopilot with `make upload_flight_echronos` (or `make upload-flight` if you compiled for FreeRTOS target).
 2. open up GCS and check the Heads-Up-Display (HUD) - the aritifical horizon should be close to leveled and with minimal yaw drift
+![](../images/elm.png)
 3. check the [acceleration] - you should see around -9.8m/s^2 in z-axis, and around zero for x and y-axis
+![](../images/sensors_accel.png)
 4. check the [gyro] - you should see very close to zero in all three axis
 5. move the quadcopter by hand in the air and see if the HUD looks sane
 6. check the [mag] - if you move the quadcopter around, you should see all three axis changing. Don't worry about the units, the magnetic vector is normalized before it is used.
+7. unplug the USB cable
 
 Now you can move on to *Arming*
 
@@ -118,3 +126,4 @@ The procedure is following:
 
 **Have fun!**
 
+<iframe width="690" height="388" src="https://www.youtube.com/embed/bIjKFqnsnT0" frameborder="0" allowfullscreen></iframe>

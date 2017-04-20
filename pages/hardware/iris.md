@@ -15,14 +15,15 @@ Depending on your application (stand alone vs. full demo flight) you will need t
 
 * [Lidar][lidar]
 * <a href="#px4flow">PX4Flow camera</a>
-* <a href="#pixycam">Pixy cam</a>
 
 
 ### Demo flight:
 
 All **Stand-alone flight** parts plus:
 
-* <a href="#tk1">TK-1 mission computer</a>
+* <a href="#pixycam">Pixy cam</a>
+* <a href="#tk1">TK-1 module</a>
+* <a href="#daughterboard">TK-1 daughterboard</a>
 * <a href="#wifi">Wifi USB dongle</a>
 * <a href="#usbhub">USB Hub</a>
 * <a href="#connectors">Connectors</a>
@@ -116,7 +117,7 @@ Back to the <a href="#top">top</a>.
 
 ### TK-1 Daughterboard
 
-The TK-1 daughterboard was developed by [Data61][] and provides CAN, PWM, power management etc. More info can be found [here][daughterboard].
+The TK-1 daughterboard was developed by [Data61][] and provides CAN, PWM, power management etc. More info can be found [here][daughterboard], and the source files are available on [bitbucket](https://bitbucket.csiro.au/login?next=/projects/OH/repos/tk1som-quadcopter-daughterboard/browse)
 
 <img src="/images/daughterboard.jpg" alt="TK-1 daughterboard" style="width: 700px;"/>
 

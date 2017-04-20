@@ -24,49 +24,39 @@ if you modify the flight controller software later.
 
 [smaccmpilot-hardware-prep]: https://github.com/galoisinc/smaccmpilot-hardware-prep
 
-## Mission Controller
-
-### TK-1-SOM
-
-**TODO**
-
-### ODROID (deprecated)
-
-The mission controller includes a Hardkernel
-[ODROID-XU](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G137510300620)
-(discontinued) development board with a custom daughter board developed by NICTA.
-
-#### Linux Filesystem
-
-Assuming you have connected and wired the ODROID and daughter board, prepare a Linux filesystem on a micro SD card. Download [the image](https://www.dropbox.com/s/hkduec0ezi7i2ux/smaccm_demo.img.gz?dl=0) then
-
-```
-> gunzip -c smaccm_demo.img.gz | dd of=<device file; sync
-```
-
-Mount the 1st partition and modify `boot.ini` by removing `run verify`. Plug the
-SD card into the ODORID.
-
-#### Wiring
-
-![](/images/odroid-daughter-wiring.jpg)
-
-Connect the ODROID daughter board to the 3DR radio (or optionally an FTDI cable
- during testing).
-
-
-* The Pixhawk and ODROID daughter board talk over CAN; wire them together.
 
 
 ## Quadcopter Flight Platforms
 
 The SMACCMPilot project supports quadcopter the
-[Iris+](https://store.3dr.com/products/iris), although it could be easily ported
+[Iris+][], although it could be easily ported
 to support other Pixhawk-based plaftforms.
 
 At this time, platforms with more than 4 motors are not supported. All motors
 must be PWM based, and use the first 4 channels connected to the PX4IO
 coprocessor.
+
+## Flight Configurations
+
+SMACCMPilot can be used in two different configurations: *Stand-alone flight* and *Demo flight*
+
+### Stand-alone Flight
+
+*Stand-alone* flight uses the stock [Iris+][] with added [lidar][] and [PX4Flow camera][px4_flow]. You will also need the **required accessories** described below. Stand-alone flight uses only the flight controller and is a great way how to get started with SMACCMPilot.
+
+Follow the [mounting instructions][lidar_mount] to get your stand-alone hardware ready.
+
+![Iris+ ready for a stand-alone flight](/images/iris_standalone.jpeg)
+
+
+### Demo flight
+
+*Demo flight* on the other hand requires additional hardware (besides what is needed for stand-alone flight), such as [Pixy cam][pixycam] and [TK-1][tk1] with a [daughterboad][tk1daughter].
+This configuration simulates sophisticated UAVs with mission computer, surveillance camera and as a result a large attack surface for potential hackers.
+
+[Attach the Pixy cam][pixycam_mount] and [mount TK-1 with daughterboard][tk1_mount] and you are good to go.
+
+![Iris+ with TK-1 and daughterboard](/images/IMG_1230.jpg)
 
 ## Required Accessories
 
@@ -98,5 +88,13 @@ run on the Pixhawk. We recommend the [Black Magic Probe](blackmagic.html), but
 various other products will work with the STM32F4 microcontroller as well.
 
 
-
+[Iris+]: https://store.3dr.com/products/iris
 [Pixhawk]: http://pixhawk.org
+[lidar]: iris.html#lidar
+[px4_flow]: iris.html#px4flow
+[lidar_mount]: lidar_and_sonar_mounting.html
+[pixycam]: iris.html#pixycam
+[tk1]: iris.html#tk1
+[tk1daughter]: iris.html#daughterboard
+[pixycam_mount]: pixycam.html
+[tk1_mount]: tk1_daughterboard.html

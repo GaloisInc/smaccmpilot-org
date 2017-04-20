@@ -111,7 +111,7 @@ And a plot like this one:
 17. `make clean; make flight_echronos` to build the flight image
 18. `make upload_flight_echronos` to upload the image
 19. place the Pixhawk on a flat surface and make sure it stays flat
-20. **TODO: doesn't work without the mag?** start the GCS and verify that the artificial horizon is also almost perfectly flat, something like this:
+20. start the GCS and verify that the artificial horizon is also almost perfectly flat, something like this:
 ![](../images/elm.png)
 If that is not the case, you have to repeat the calibration. 
 21. check `http://localhost:8080/sensors_accel.html` and verify that you are reading -9.8 m/s^2 in the z-axis and almost zeros in the other axis, something like this:
