@@ -44,8 +44,8 @@ sitemap = Tree "/" "Home"
     , Group "Development"
       [ Page "build.html"             "Building"
       , Page "loading.html"           "Loading"
-      , Page "standalone.html"        "Stand-alone flight"
-      , Page "demo.html"              "Demo flight"
+      , Page "standalone.html"        "Stand-alone flight setup"
+      , Page "demo.html"              "Demo flight setup"
       , Page "preflight.html"         "Flight preparation"
       ]
     , Group "Ground Control Software"
@@ -53,6 +53,10 @@ sitemap = Tree "/" "Home"
       ]
     , Group "Communications Security"
       [ Page "commsec-overview.html" "Overview"
+      ]
+    , Group "Examples"
+      [ Page "demo_script.html" "Demo flight"
+      , Page "attack_details.html" "Attack description"
       ]
     ]
 
