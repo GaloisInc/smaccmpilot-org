@@ -7,9 +7,8 @@ These notes describe how the attack is constructed.
 ## Modifying the VM
 
 
-The goal is to overwrite the nonce and salt for the encryption and
-decryption functions. We accomplish this by mapping the relevant pages
-of memory into the memory space of the VM. First we modify the VM to
+The goal of the attack is to overwrite the nonce and salt for the encryption and decryption functions. These are stored in memory outside of the VM. To simulate a successful attack on a system that has a VM security vulnerability, we will first intentionally map this memory into the VM so that it can be read and modified. 
+We accomplish this by mapping the relevant pages of memory into the memory space of the VM. First we modify the VM to
 tell it that we are inserting two extra pages to be loaded at a
 specific memory address (we picked `0xd000000` somewhat arbitrarily).
 To do this, run `make menuconfig` and select the option `Use hacked VM

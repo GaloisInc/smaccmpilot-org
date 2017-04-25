@@ -48,11 +48,12 @@ or [view the archives][archives].
 
 <br>
 
-SMACCMPilot is developed as part of the Secure Mathematically-Assured
-Composition of Control Models (SMACCM) research project, under DARPA's
+SMACCMPilot is developed as part of the [Secure Mathematically-Assured
+Composition of Control Models][smaccm] (SMACCM) research project led by Rockwell Collins, under DARPA's
 [High-Assurance Cyber Military Systems][hacms] (HACMS) program.
 
 [hacms]: http://www.darpa.mil/program/high-assurance-cyber-military-systems
+[smaccm]: http://loonwerks.com/projects/hacms.html
 
 ### About this site
 
