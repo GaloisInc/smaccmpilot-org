@@ -13,15 +13,17 @@ The SMACCMPilot team is:
 - [Lee Pike](http://galois.com/team/lee-pike/)
 - [Adam Foltzer](http://galois.com/team/adam-foltzer/)
 - [Michal Podhradsky](http://podhrmic.github.io/)
+- [Jason Dagit](http://galois.com/team/jason-dagit/)
 
-Alumi are:
+Alumni are:
 
-- [Thomas DuBuisson](http://galois.com/team/tom-dubuisson/)
 - [Trevor Elliott](http://galois.com/team/trevor-elliott/)
-- [John Launchbury]()
-- [James Bielman]()
+- [Thomas DuBuisson](http://galois.com/team/tom-dubuisson/)
+- [Pat Hickey](http://moreproductive.org/)
+- John Launchbury
+- James Bielman
 - [Erlend Hamberg](http://hamberg.no/erlend/about.html)
-- [Pat Hickey]()
+- Georges-Axel Jaloyan
 
 
 ### License

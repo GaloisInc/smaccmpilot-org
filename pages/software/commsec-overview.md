@@ -1,5 +1,4 @@
-
-# Secure MAVLink (SMAVLink)
+# Secure Communications
 
 [MAVLink][mavlink] is a popular micro air vehicle message format used to
 communicate between the ground stations and unmanned vehicles.  MAVLink uses
@@ -11,14 +10,14 @@ In response, we've implemented a simple
 [custom serialization protocol](https://github.com/GaloisInc/gidl) called GIDL
 for with Ivory and Haskell backends. In SMACCMPilot, GIDL replaces MAVLink.
 
-We have also implemented a implemented a light-weight encapsulation format that
+We have also implemented a implemented a lightweight encapsulation format that
 can be used with GIDL (or MAVLink) to protect against forgery, replay attacks,
 and snooping.  The changes result in an overhead of 16 bytes of additional
-bandwidth use per message frame, which is potentially composed of many message.
+bandwidth use per message frame, which is potentially composed of many messages.
 The computational overhead is dominated by encryption and decryption operations
 for each message send and receive.
 
-The design constraints for the crypto is made with the following constraints in mind:
+The design constraints for the crypto are made with the following constraints in mind:
 
 * Costs, in terms of computational overhead and bandwidth, must be kept low.
 * Availability of the communications medium must not be eliminated by unexpected power-cycles.

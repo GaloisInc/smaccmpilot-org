@@ -2,8 +2,53 @@
 # Example RC Controllers
 
 SMACCMPilot is compatible with a wide variety of RC transmitters and receivers,
-as long as they provide 6 or more channels and PPM output. We will describe two
+as long as they provide 6 or more channels and PPM output. We will describe three
 sample RC control systems which we've successfully used with SMACCMPilot.
+
+## FlySky FS-TH9X
+
+The FlySky FS-TH9X ships with the Iris+: 
+
+![*FS-TH9X radio controller*](../images/iris_radio.jpg)
+
+### FS-TH9X switches
+The 3-position **MODE SWITCH** is located on the right side of the controller, and the pilot operates it with their right index finger (while keeping the right thumb on the roll/pitch stick). The modes are:
+
+* **TOP:** Manual mode (all control inputs are from the pilot)
+* **MIDDLE:** Alt-hold mode (pilot controls roll/pitch/yaw, the altitude/throttle is maintained automatically)
+* **BOTTOWM:** GCS mode (same as Alt-hold, except the GCS operator can send roll/pitch/yaw commands over datalink)
+
+The 2-position **KILL SWITCH** (labelled as *THROTTLE CUT*) is your
+best friend. Located at the left side of the controller, it is
+operated by your left index finger so you can keep your left thumb on
+the throttle stick. You should **always** have a finger on the kill
+switch. When engaged (push *away* with your index finger), the vehicle
+immediately kills all the throttle and stops the motors. When
+disengaged (push towards you) it allows the vehicle to be armed.
+
+![RC switches](/images/rc_switches.png)
+
+
+### FS-TH9X radio configuration
+
+Your radio should be configured exactly as follows:
+
+![Page 1](/images/rc1.JPG)
+
+![Page 2](/images/rc2.JPG)
+
+![Page 3](/images/rc3.JPG)
+
+![Page 4](/images/rc4.JPG)
+
+![Page 5](/images/rc5.JPG)
+
+![Page 6](/images/rc6.JPG)
+
+![Page 7](/images/rc7.JPG)
+
+![Page 8](/images/rc8.JPG)
+
 
 ## FrSky Taranis X9D
 

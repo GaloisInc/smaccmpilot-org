@@ -24,11 +24,11 @@ still experimental and cannot safely fly without human guidance, the RC system
 provides a pilot a way to disable autonomous flight or the helicopter motors
 themselves at any time.
 
-We envision that one day, SMACCMPilot will be smart enough to fly & land safety
-without requiring an RC system for safety. However, for now, we recommend that
-SMACCMPilot users get comfortable flying the vehicle under stabilize mode, and
-always have a safety pilot holding the RC transmitter when flying in autonomous
-mode.
+We envision that one day, SMACCMPilot will be smart enough to fly &
+land safety without requiring an RC system for safety. However, for
+now, we recommend that SMACCMPilot users get comfortable flying the
+vehicle under stabilize mode, and always have a safety pilot holding
+the RC transmitter when flying in autonomous or GCS control mode.
 
 Improper operation of any quadcopter can cause injury. Only operate a safe
 distance away from people, and always have an operator spotting the vehicle and
@@ -56,7 +56,7 @@ flight controller as a pulse-width modulated (PWM) wave. (Pulse-position
 modulation, PPM, is a scheme used to multiplex multiple PWM signals serially.)
 Whether modulated as PWM or PPM, each channel has a width in the time domain,
 measured in microseconds. RC transmitters generally output a channel with a
-width ranging from 1000us to 2000us. If your RC transmitter uses a different
+width ranging from 1000µs to 2000µs. If your RC transmitter uses a different
 range, it may not work with SMACCMPilot.
 
 SMACCMPilot expects radio channels according to the following scheme:
@@ -67,11 +67,11 @@ SMACCMPilot expects radio channels according to the following scheme:
 * Channel 4 controls yaw.
 
 * Channel 5 selects flight control mode. At this time, SMACCMPilot supports
-  three flight control modes: stabilize, and altitude hold, and autonomous.
+  three flight control modes: stabilize, and altitude hold, and GCS control.
   The user will typically map channel 5 to a 3-position switch on the right side
   of the controller.
   Channel 5 pulse widths correspond to the following modes:
-    * 1000-1250us: autonomous mode
+    * 1000-1250us: GCS mode
     * 1250-1750us: altitude hold mode
     * 1750-2000us: stabilize mode
 
@@ -81,41 +81,6 @@ SMACCMPilot expects radio channels according to the following scheme:
   armed via either the RC controller or via a telemetry command.
   The user will typically map channel 6 to a 2-position switch on the top left
   of the controller.
-
-Below is a recommened configuration for **FS-TH9X radio controller**, shipped as a default with Iris+:
-![*FS-TH9X radio controller*](../images/iris_radio.jpg)
-
-### Iris+ switches
-3-position **MODE SWITCH** is located on the right side of the controller, and the pilot operates it with their right index finger (while keeping the right thumb on the roll/pitch stick). The modes are:
-
-* **TOP:** Manual mode (all control inputs are from the pilot)
-* **MIDDLE:** Alt-hold mode (pilot controls roll/pitch/yaw, the altitude/throttle is maintained automatically)
-* **BOTTOWM:** GCS mode (same as Alt-hold, except the GCS operator can send roll/pitch/yaw commands over datalink)
-
-Two position **KILL SWITCH** (labelled as *THROTTLE CUT*) is your best friend. Located at the left side of the controller. It is operated by your left index finger (so you can keep your left thumb on the throttle stick) and you should **always** have a finger on the KILL switch. When engaged (push *away* with your index finger), the vehicle immediately kills all the throttle and stops the motors. When disengaged (push towards you) it allows the vehicle to be armed. 
-
-![RC switches](/images/rc_switches.png)
-
-
-### Iris+ radio configuration
-Your radio should be configured exactly the same:
-
-![Page 1](/images/rc1.JPG)
-
-![Page 2](/images/rc2.JPG)
-
-![Page 3](/images/rc3.JPG)
-
-![Page 4](/images/rc4.JPG)
-
-![Page 5](/images/rc5.JPG)
-
-![Page 6](/images/rc6.JPG)
-
-![Page 7](/images/rc7.JPG)
-
-![Page 8](/images/rc8.JPG)
-
 
 ## Arming via RC controller
 

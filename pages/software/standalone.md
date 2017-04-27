@@ -1,36 +1,44 @@
 # SMACCMPilot stand-alone flight
 
-These instructions guide you though the process of uploading code to the flight computer. If you are using stand-alone setup, that is all you need to do to get you going.
+These instructions guide you though the process of uploading code to
+the flight computer. If you are not using the mission computer, this
+is all you need to do to get flying.
 
-## PX4 Loading
+## Upload methods
 
-Before you begin, determine whether you want to use the PX4 USB Bootloader, or
-whether you prefer to use a JTAG programmer such as the [Black Magic Probe](https://github.com/blacksphere/blackmagic/wiki).
-Instructions for both cases are below. Note that for the
-[hardware](../hardware/index.md) the casing has to be cut away and solder on JTAG header in order to use the probe.
+Before you begin, determine whether you want to use the PX4 USB
+Bootloader, or whether you prefer to use a JTAG programmer such as
+the
+[Black Magic Probe](https://github.com/blacksphere/blackmagic/wiki).
+Instructions for both cases are below. Note that for
+the [Pixhawk](../hardware/index.md) the casing has to be cut away, and
+a JTAG header soldered on in order to use the probe.
 
-### PX4 USB Bootloader
+### PX4 USB bootloader
 
-The PX4 development team has written a USB bootloader for the Pixhawk and
-distributes loaders for Windows, Mac, and Linux. The PX4 bootloader is flashed
-to the Pixhawk at the factory. This is the easiest method of uploading new
-programs to the Pixhawk and does not require hardware aside from a USB cable. By
-default, SMACCMPilot binaries are built to be compatible with the PX4
-bootloader.
+The PX4 project has a USB bootloader for the Pixhawk and distributes
+loaders for Windows, Mac, and Linux. The PX4 bootloader is flashed to
+the Pixhawk at the factory. This is the easiest method of uploading
+new programs to the Pixhawk and does not require hardware aside from a
+USB cable. By default, SMACCMPilot binaries are built to be compatible
+with the PX4 bootloader.
 
-These instructions may be augmented by the [PX4 Project wiki
-page][px4wiki-upload] on the same topic.
+For more detail, see the [PX4 Project wiki page][px4wiki-upload] on
+the bootloader.
 
 [px4wiki-upload]: https://dev.px4.io/stm32_bootloader.html
 
-#### Flashing the Bootloader
+#### Flashing the bootloader
 
-Ordinarily, you will not have to worry about flashing the bootloader, since it
-comes flashed from the factory and SMACCMPilot project binaries should not
-overwrite it unless configured to and loaded via the Black Magic Probe. However,
-if you have overwritten the bootloader, it is easy to replace.
+Ordinarily, you will not have to worry about flashing the bootloader,
+since it comes flashed from the factory and SMACCMPilot project
+binaries should not overwrite it unless configured to and loaded via
+JTAG. However, if you have overwritten the bootloader, it is easy to
+replace.
 
-The PX4 bootloader for the Pixhawk is distributed as a binary in the [smaccmpilot-hardware-prep][blbin] repository.
+The PX4 bootloader for the Pixhawk is distributed as a binary in
+the [smaccmpilot-hardware-prep][blbin] repository. Upload this image
+to the Pixhawk using your [JTAG debugger][blackmagic].
 
 [blbin]: https://github.com/GaloisInc/smaccmpilot-hardware-prep/tree/master/fmu_bootloader
 
@@ -44,18 +52,18 @@ clone of the [libopencm3][] repository in the same parent directory.
 
 [libopencm3]: http://github.com/PX4/libopencm3
 
-#### Bootloader Compatible Binaries
+#### Bootloader compatible binaries
 
-The PX4 bootloader uses a special `.px4` format for program binaries. The
-build system will build `image.px4` binaries alongside ordinary
-ELF binaries (named simply `image`). Note that the `image.px4` binary will be
-linked to sit after the PX4 bootloader in flash, whereas the `image` elf will be
-linked to sit at the beginning of flash.
+The PX4 bootloader uses a special `.px4` format for program
+binaries. The SMACCMPilot build system will build `image.px4` binaries
+alongside ordinary ELF binaries (named simply `image`). Note that
+`image.px4` will be linked to sit after the PX4 bootloader in flash,
+whereas `image` will be linked to sit at the beginning of flash.
 
-#### Bootloader Behavior
+#### Bootloader behavior
 
 The bootloader is active for the first five seconds after the Pixhawk is powered
-on.  When active, the bootloader will rapidly flash the red LED only. The
+on. When active, the bootloader will rapidly flash the red LED only. The
 uploader must initiate communication with the Pixhawk while the bootloader is
 active. Because of this five second time limit, we have had problems trying to use the bootloader from within a virtual
 machine.
