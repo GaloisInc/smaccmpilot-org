@@ -1,11 +1,15 @@
 # Hardware Overview
 
-This page will describe the basic components needed to build a hardware platform
-for SMACCMPilot. There are two main components in SMACCMPilot: the **mission
-computer** and the **flight controller**. The mission computer manages
-networking with the ground control station (GCS) and hosting high-level
-applications (e.g., a webcam running on Linux). The flight controller executes
-the core flight functionality (e.g. stabilization and motor control).
+This page will describe the basic components needed to build a
+hardware platform for SMACCMPilot. There are two main components in
+SMACCMPilot: the **mission computer** (optional) and the **flight
+controller**. The mission computer manages networking with the ground
+control station (GCS) and hosting high-level applications (e.g., a
+webcam running on Linux). The flight controller executes the core
+flight functionality (e.g. stabilization and motor control). When a
+mission computer is not installed, the flight controller also manages
+networking with the GCS, though it does not host any high-level
+applications.
 
 ## Flight Controller
 
@@ -28,9 +32,9 @@ if you modify the flight controller software later.
 
 ## Quadcopter Flight Platforms
 
-The SMACCMPilot project supports quadcopter the
-[Iris+][], although it could be easily ported
-to support other Pixhawk-based plaftforms.
+The SMACCMPilot project supports the 3DR [Iris+][] quadcopter,
+although it could be easily ported to support other Pixhawk-based
+plaftforms.
 
 At this time, platforms with more than 4 motors are not supported. All motors
 must be PWM based, and use the first 4 channels connected to the PX4IO
@@ -51,12 +55,18 @@ Follow the [mounting instructions][lidar_mount] to get your stand-alone hardware
 
 ### Demo flight
 
-*Demo flight* on the other hand requires additional hardware (besides what is needed for stand-alone flight), such as [Pixy cam][pixycam] and [TK-1][tk1] with a [daughterboad][tk1daughter].
-This configuration simulates sophisticated UAVs with mission computer, surveillance camera and as a result a large attack surface for potential hackers.
+*Demo flight* on the other hand requires additional hardware on top of
+what is needed for stand-alone flight, such as a [Pixy cam][pixycam]
+and a [TK1][tk1] with a [daughterboad][tk1daughter].  This
+configuration simulates sophisticated UAVs with a mission computer,
+surveillance camera, and as a result, a large attack surface for
+potential hackers.
 
-[Attach the Pixy cam][pixycam_mount] and [mount TK-1 with daughterboard][tk1_mount] and you are good to go.
+[Attach the Pixy cam][pixycam_mount]
+and [mount the TK1 with daughterboard][tk1_mount], and you are good
+to go.
 
-![Iris+ with TK-1 and daughterboard](/images/IMG_1230.jpg)
+![Iris+ with TK1 and daughterboard](/images/IMG_1230.jpg)
 
 ## Required Accessories
 
@@ -67,7 +77,7 @@ SMACCMPilot needs to communicate with a ground control station (GCS) to operate.
 You'll need a pair of [3DR Radio][3drradio] radio modems for bidirectional
 communication between the air vehicle and GCS software running on your PC.
 
-See the [3DR Radio setup][3drradio-setup] page for information on how to setup
+See the [3DR Radio setup][3drradio-setup] page for information on how to set up
 and configure 3DR Radios for use with SMACCMPilot.
 
 [3drradio]: http://store.3drobotics.com/products/3dr-radio-telemetry-kit-915-mhz

@@ -3,22 +3,24 @@
 These instructions assume you've succesfully [built SMACCMPilot][building],
 and you have a complete [SMACCMPilot flight platform][hardware].
 
-For stand-alone flight, there is only one board to flash:
+## Stand-alone flight computer
+
+For stand-alone flight, there is only one board to program:
 
 - [Pixahwk][Pixhawk]
 
+Follow the detailed instructions [here][standalone].
 
-For demo flight, there are two boards to flash: 
+## Demo configuration (flight and mission computer)
+
+For demo flight, there are two boards to program: 
 
 - [Pixahwk][Pixhawk]
-- [Colorado Engineering TK-1][TK-1] with [NVIDIA Tegra K1 SoC][tegra]  
-  
-We describe each board case below.
+- [Colorado Engineering TK1][TK1] with [NVIDIA Tegra K1 SoC][tegra]  
 
-
-## Stand-alone flight
-
-For instructions, click [here][standalone]
+First, follow the stand-alone flight
+computer [instructions][standalone], and then follow the detailed
+misson computer [instructions][demo].
 
 [standalone]: standalone.html
 [demo]: demo.html
@@ -26,8 +28,7 @@ For instructions, click [here][standalone]
 [building]: build.html
 [hardware]: ../hardware/index.html
 [Pixhawk]: https://pixhawk.org/modules/pixhawk
-[TK-1]: https://coloradoengineering.com/standard-products/tk1-som-8gb/
+[TK1]: https://coloradoengineering.com/standard-products/tk1-som-8gb/
 [tegra]: https://coloradoengineering.com/standard-products/tk1-som-8gb/
 [ODROID-XU]: http://odroid.com/dokuwiki/doku.php?id=en:odroid-xu4
-
 

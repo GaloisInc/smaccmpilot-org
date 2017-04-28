@@ -20,7 +20,7 @@ sitemap = Tree "/" "Home"
   where
   hardwarepages =
     [ Page "index.html"            "Overview"
-    , Page "iris.html"             "Iris add-ons"
+    , Page "iris.html"             "Iris+ add-ons"
     , Group "Debugging"
       [ Page "blackmagic.html"       "Debugger"
       ]
@@ -29,7 +29,7 @@ sitemap = Tree "/" "Home"
       ]
     , Group "Modifications"
       [ Page "lidar_and_sonar_mounting.html"             "Lidar and PX4Flow"
-      , Page "tk1_daughterboard.html"             "TK-1 daughterboard"
+      , Page "tk1_daughterboard.html"             "TK1 daughterboard"
       , Page "pixycam.html"             "Pixy Cam"
       ]
     , Group "Controllers"
