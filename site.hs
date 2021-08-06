@@ -70,7 +70,7 @@ config :: Configuration
 config = defaultConfiguration { deployCommand = deploy }
   where
   path = "/srv/www/smaccmpilot.org/public_html/"
-  server = "alfred.galois.com"
+  server = "scholomance.galois.com"
   deploy = "scp -r _site/* " ++ server ++  ":" ++ path
     -- scp sets the group wrong, we need to change all of the items
     -- we own to group smaccm, supressing errors for the items we do not own
