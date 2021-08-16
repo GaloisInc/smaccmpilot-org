@@ -12,11 +12,11 @@ the untrusted Linux VM demo component is flashed to the eMMC storage.
 
 ## Flash uboot
 
-Follow the instructions [here](https://wiki.sel4.systems/Hardware/jetsontk1?highlight=%28uboot%29#Flash_U-Boot)
+Follow the instructions [here](https://docs.sel4.systems/Hardware/jetsontk1?highlight=%28uboot%29#Flash_U-Boot)
 
 ## Load mission computer image
 
-Follow the instructions [here](https://wiki.sel4.systems/Hardware/CEI_TK1_SOM).
+Follow the instructions [here](https://docs.sel4.systems/Hardware/CEI_TK1_SOM).
 
 A few notes about the uploading: for debugging, it is possible to set
 up FTP on the GCS and DHCP file transfer on the TK1/uboot.  This is a
